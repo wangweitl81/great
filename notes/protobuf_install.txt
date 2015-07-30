@@ -1,0 +1,9 @@
+sudo apt-get install autoconf
+
+sudo apt-get install libtool   
+
+./configure
+sudo apt-get install make
+make
+make install
+
