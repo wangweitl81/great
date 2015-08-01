@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>nl.iteye</groupId>
+  <artifactId>App1</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>App1 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <finalName>App1</finalName>
+	 <plugins>
+			 <plugin>
+				<groupId>org.glassfish</groupId>
+				<artifactId>maven-embedded-glassfish-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+				   <app>${project.build.directory}/${build.finalName}.war</app>
+				   <port>7070</port>
+				   <containerType>web</containerType>
+				</configuration>
+			 </plugin>
+		</plugins>
+  </build>
+	<distributionManagement>
+	  <repository>
+		 <id>deployment</id>
+		 <name>Internal Releases</name>
+		 <url>http://192.168.1.113:8081/nexus/content/repositories/releases/</url>
+	  </repository>
+	  <snapshotRepository>
+		 <id>deployment</id>
+		 <name>Internal Releases</name>
+		 <url>http://192.168.1.113:8081/nexus/content/repositories/snapshots/</url>
+	  </snapshotRepository>
+	</distributionManagement>
+ 
+</project>
