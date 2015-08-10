@@ -1,0 +1,20 @@
+{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+
+    // SublimeLinter-flake8
+    "SublimeLinter":
+    {
+        "@python": 2.7
+    },
+
+    // SublimePythonIDE
+    "settings": {
+        "python_interpreter": "C:/Python27/python.exe"
+    }
+}
