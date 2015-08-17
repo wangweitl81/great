@@ -1,34 +1,19 @@
-class lexicon:
-    directions = ['north', 'south']
-    verbs = ['']
-    stop_words = ['']
-    nouns = ['']
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-    @staticmethod
-    def convert_number(source):
-        return int(source)
-
-    @staticmethod
-    def scan(data):
-        data = data.split()
-        results = []
-
-        for l in data:
-            if l in lexicon.directions:
-                results.append(('direction', l))
-            elif l in lexicon.verbs:
-                results.append(('verb', l))
-            elif l in lexicon.stop_words:
-                results.append(('stop', l))
-            elif l in lexicon.nouns:
-                results.append(('noun', l))
-            elif lexicon.convert_number(l) in lexicon.numbers:
-                results.append(('number', lexicon.convert_number(l)))
-            else:
-                results.append(('error', l))
-
-        return results
+from HTMLParser import HTMLParser
 
 
-print(lexicon.scan("north south east"))
+# create a subclass and override the handler methods
+class MyHTMLParser(HTMLParser):
+
+    def handle_starttag(self, tag, attrs):
+        print "Encountered a start tag:", tag
+
+    def handle_endtag(self, tag):
+        print "Encountered an end tag :", tag
+
+    def handle_data(self, data):
+        print "Encountered some data  :", data
+
+# instantiate the parser and fed it some HTML
+parser = MyHTMLParser()
+source = '<html><head><title>Index of /1.2.10/</title></head><body bgcolor="white"><h1>Index of /1.2.10/</h1><hr><pre><a href="../">../</a><a href="docs/">docs/</a>                                              24-Jan-2014 23:53                   -<a href="i18n/">i18n/</a>                                              24-Jan-2014 23:53                   -<a href="angular-1.2.10.zip">angular-1.2.10.zip</a>                                 24-Jan-2014 23:53             4684139<a href="angular-animate.js">angular-animate.js</a>                                 24-Jan-2014 23:53               70420<a href="angular-animate.min.js">angular-animate.min.js</a>                             24-Jan-2014 23:53                9644<a href="angular-animate.min.js.map">angular-animate.min.js.map</a>                         24-Jan-2014 23:53               27183<a href="angular-cookies.js">angular-cookies.js</a>                                 24-Jan-2014 23:53                5712<a href="angular-cookies.min.js">angular-cookies.min.js</a>                             24-Jan-2014 23:53                 850<a href="angular-cookies.min.js.map">angular-cookies.min.js.map</a>                         24-Jan-2014 23:53                2337<a href="angular-csp.css">angular-csp.css</a>                                    24-Jan-2014 23:53                 241<a href="angular-loader.js">angular-loader.js</a>                                  24-Jan-2014 23:53               14464<a href="angular-loader.min.js">angular-loader.min.js</a>                              24-Jan-2014 23:53                1505<a href="angular-loader.min.js.map">angular-loader.min.js.map</a>                          24-Jan-2014 23:53                2815<a href="angular-mocks.js">angular-mocks.js</a>                                   24-Jan-2014 23:53               68684<a href="angular-resource.js">angular-resource.js</a>                                24-Jan-2014 23:53               23435<a href="angular-resource.min.js">angular-resource.min.js</a>                            24-Jan-2014 23:53                3279<a href="angular-resource.min.js.map">angular-resource.min.js.map</a>                        24-Jan-2014 23:53                8732<a href="angular-route.js">angular-route.js</a>                                   24-Jan-2014 23:53               32503<a href="angular-route.min.js">angular-route.min.js</a>                               24-Jan-2014 23:53                3885<a href="angular-route.min.js.map">angular-route.min.js.map</a>                           24-Jan-2014 23:53                9836<a href="angular-sanitize.js">angular-sanitize.js</a>                                24-Jan-2014 23:53               20417<a href="angular-sanitize.min.js">angular-sanitize.min.js</a>                            24-Jan-2014 23:53                4295<a href="angular-sanitize.min.js.map">angular-sanitize.min.js.map</a>                        24-Jan-2014 23:53               10108<a href="angular-scenario.js">angular-scenario.js</a>                                24-Jan-2014 23:53             1069755<a href="angular-touch.js">angular-touch.js</a>                                   24-Jan-2014 23:53               20706<a href="angular-touch.min.js">angular-touch.min.js</a>                               24-Jan-2014 23:53                3205<a href="angular-touch.min.js.map">angular-touch.min.js.map</a>                           24-Jan-2014 23:53                8751<a href="angular.js">angular.js</a>                                         24-Jan-2014 23:53              727582<a href="angular.min.js">angular.min.js</a>                                     24-Jan-2014 23:53              100085<a href="angular.min.js.gzip">angular.min.js.gzip</a>                                24-Jan-2014 23:53               36933<a href="angular.min.js.map">angular.min.js.map</a>                                 24-Jan-2014 23:53              269869<a href="errors.json">errors.json</a>                                        24-Jan-2014 23:53                5312<a href="version.json">version.json</a>                                       24-Jan-2014 23:53                 101<a href="version.txt">version.txt</a>                                        24-Jan-2014 23:53                   6</pre><hr></body></html>'
+parser.feed(source)
