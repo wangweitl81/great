@@ -56,8 +56,9 @@ class ResourceFetcher(HTMLParser):
         self.reg = re.compile(r"\.js$")
         self.baseUrl = baseUrl
         print dir(self)
-        super(ResourceFetcher, self).__init__()
-        # HTMLParser.__init__(self)
+        # super(ResourceFetcher, self).__init__()
+        HTMLParser.__init__(self)
+        self.filelist = []
 
     def handle_starttag(self, tag, attrs):
         print "Encountered a start tag:", tag
@@ -71,6 +72,10 @@ class ResourceFetcher(HTMLParser):
             testfile = urllib.URLopener()
             testfile.retrieve(self.baseUrl + data, "./js/" + data)
             print "Now the file %s has been saved. " % data
+            self.filelist.append(data)
+
+    def get_file_list(self):
+        return self.filelist
 
 
 class httptool:
@@ -86,6 +91,7 @@ class httptool:
             # print data
             # now parse the html and download js scripts
             self.downloader.feed(data)
+            return self.downloader.get_file_list()
 
         except IOError, e:
             if hasattr(e, 'code'):  # HTTPError
