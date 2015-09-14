@@ -85,7 +85,6 @@ body {
 	margin:0px;
 	color:white;
 	font-size:11px;
-	background-image:url('../RAN_files/pnav_label_-_ran_u646.png')
 }
 
 #main_banner {
@@ -227,6 +226,10 @@ p.padding {
     color: #ccc;
 }
 
+.table_record.high{
+	height: 40px;
+}
+
 .table_record:hover {
 	background-color: #555;
 }
@@ -234,24 +237,33 @@ p.padding {
 .table_record_section {
 	padding-top: 0px;
 	float:left;
-	height: 30px;
 	background-repeat: no-repeat;
 	background-position: 11px 11px; 	
+	color: #999999;
 }
 
+.table_record_section.highlight {
+	color: white;	
+}
+
+	
 .table_record_section.red {
+	height: 30px;
 	background-image: url("../images/status_red.png");
 }
 
 .table_record_section.green {
+	height: 30px;
 	background-image: url("../images/status_green.png");
 }
 
 .table_record_section.yellow {
+	height: 30px;
 	background-image: url("../images/status_yellow.png");
 }
 
 .table_record_section.grey {
+	height: 30px;
 	background-image: url("../images/status_grey.png");
 }
 
@@ -270,4 +282,7 @@ p.padding {
 	background-position: 100px 100px;
 }
 
-
+.ring {
+	fill: green;
+    opacity: 0.5;
+}

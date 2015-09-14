@@ -99,11 +99,12 @@
     			</p>
     		</div>
     	</div>
-      <div class="main_section" id="map" style="display:none;">
-        <div id="blank_map_v2" style="z-index:9999;">
+      <div class="main_section" id="map" style="display:none;position:relative;">
+        <div id="blank_map_v2" style="z-index:1099;margin:100px;">
           <img src="./images/img-map-us-grey.png">
         </div>
-      </div>
+        <div id="hot_zone_ca" style="position:absolute;left:60px;top:270px;width:100px;height:100px;"></div>         
+        </div>
       <div class="main_section" id="ap_list" style="display:block;">
         <div id="select_group">
           <div class="ap_list_selector_icon grey">
@@ -191,38 +192,7 @@
                 <p>4days14hours</p>
             </div> 
           </div>    
-          <div class="table_record">
-            <div class="table_record_section yellow" style="width:30px;">
-            </div>
-            <div class="table_record_section" style="width:358px;">
-                <p>AP000002</p>
-            </div>
-            <div class="table_record_section" style="width:200px;">
-                <p>192.168.0.1</p>
-            </div>
-            <div class="table_record_section" style="width:200px;">
-                <p>Location</p>
-            </div>  
-            <div class="table_record_section" style="width:180px;">
-                <p>4days14hours</p>
-            </div> 
-          </div>   
-          <div class="table_record">
-            <div class="table_record_section grey" style="width:30px;">
-            </div>
-            <div class="table_record_section" style="width:358px;">
-                <p>AP000002</p>
-            </div>
-            <div class="table_record_section" style="width:200px;">
-                <p>192.168.0.1</p>
-            </div>
-            <div class="table_record_section" style="width:200px;">
-                <p>Location</p>
-            </div>  
-            <div class="table_record_section" style="width:180px;">
-                <p>4days14hours</p>
-            </div> 
-          </div>                                                     
+                                                             
         </div>
       </div>
       <!-- start of alarm list -->
@@ -233,22 +203,22 @@
               <span>ALARM</span>
             </p>
           </div>
-          <div class="table_header_title" style="width:180px;">
+          <div class="table_header_title" style="width:110px;">
             <p class="padding">
               <span>IP</span>
             </p>
           </div>
-          <div class="table_header_title" style="width:80px;">
+          <div class="table_header_title" style="width:140px;">
             <p class="padding">
               <span>SEVERITY</span>
             </p>
           </div>
-          <div class="table_header_title" style="width:80px;">
+          <div class="table_header_title" style="width:120px;">
             <p class="padding">
               <span>IP</span>
             </p>
           </div>
-          <div class="table_header_title" style="width:180px;">
+          <div class="table_header_title" style="width:150px;">
             <p class="padding">
               <span>OCCURENCE</span>
             </p>
@@ -257,41 +227,7 @@
         <div id="horizontal_line">
         </div>
         <div class="table_content_list">
-          <div class="table_record">
-            <div class="table_record_section" style="width:380px;">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="table_record_section" style="width:180px;">
-                <p>192.168.0.1</p>
-            </div>
-            <div class="table_record_section" style="width:80px;">
-                <p>CRITICAL</p>
-            </div>
-            <div class="table_record_section" style="width:80px;">
-                <p>000.00.000.00</p>
-            </div>  
-            <div class="table_record_section" style="width:180px;">
-                <p>6/28/2015 00:00 AM</p>
-            </div> 
-          </div>   
-         <div class="table_record">
-            <div class="table_record_section" style="width:380px;">
-                <p>Sed posuere consectetur est at lobortis.</p>
-            </div>
-            <div class="table_record_section" style="width:180px;">
-                <p>192.168.0.1</p>
-            </div>
-            <div class="table_record_section" style="width:80px;">
-                <p>CRITICAL</p>
-            </div>
-            <div class="table_record_section" style="width:80px;">
-                <p>000.00.000.00</p>
-            </div>  
-            <div class="table_record_section" style="width:180px;">
-                <p>6/28/2015 00:00 AM</p>
-            </div> 
-          </div>                                          
-        </div>
+                </div>
       </div>
       <!-- end of ap list-->
 
@@ -301,10 +237,119 @@
 
 <script src="./scripts/jquery-1.7.1.min.js"></script>
 <script src="./scripts/jquery-ui-1.8.10.custom.min.js"></script>
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
 <script type="text/javascript">
+  function renderData(serviceName, data) {
+    console.log("now render the data." + serviceName + data);
+
+    if(serviceName == 'ap_list') {
+      var html = "";
+      $.each(data, function(index, element) {
+        html += getAPRecord(element);
+      });
+      $("#ap_list .table_content_list").eq(0).html(html);
+    } else {
+      var html = "";
+      $.each(data, function(index, element) {
+        html += getAlarmRecord(element);
+      }); 
+      $("#alarm_list .table_content_list").eq(0).html(html);
+    }
+  }
+
+
+
+  function getAPRecord(data) {
+    var row = "<div class=\"table_record\"><div class=\"table_record_section " + data.status + "\" style=\"width:30px;\"></div><div class=\"table_record_section\" style=\"width:358px;\"><p>" + data.ap + "</p></div><div class=\"table_record_section\" style=\"width:200px;\"><p>" + data.ip + "</p></div><div class=\"table_record_section\" style=\"width:200px;\"><p>"+ data.region +"</p></div><div class=\"table_record_section\" style=\"width:180px;\"><p> " + data.uptime + "</p></div></div>";
+
+    return row;
+  } 
+
+  function getAlarmRecord(data) {
+    var row = "<div class=\"table_record high\"><div class=\"table_record_section highlight\" style=\"width:380px;\"><p>" + data.alarm + "</p></div><div class=\"table_record_section\" style=\"width:110px;\"><p>" + data.ip + "</p></div><div class=\"table_record_section\" style=\"width:140px;\"><p>" + data.severity + "</p></div><div class=\"table_record_section\" style=\"width:120px;\"><p>" + data.ipv6 + "</p></div><div class=\"table_record_section\" style=\"width:150px;\"><p>" + data.occurence + "</p></div></div>";
+    console.log(data.alarm);
+    return row;
+  }
+
+  function loadAndRender(serviceName) {
+    var jsonFile = "";
+    if(serviceName == 'ap_list') {
+      jsonFile = "ap.json";
+    } else if(serviceName == 'alarm_list'){
+      jsonFile = "alarm.json";
+    }
+
+    if(jsonFile == '') {
+      setupHotspots();
+    } else {
+      var xhr = $.ajax({
+        url: 'data/' + jsonFile,
+        type: 'get',
+        dataType: 'text',
+        success: function(data) {
+          var data = $.parseJSON(data);
+          renderData(serviceName, data);  
+        }
+      });       
+    }
+  }
+
+  function setupHotspots() {
+    //Width and height
+      var w = 100;
+      var h = 100;
+
+      var dataset = [ 5, 10, 20, 45, 6, 25 ];
+
+      var outerRadius = w / 2;
+      var innerRadius = w / 2.5;
+      var arc = d3.svg.arc()
+              .innerRadius(innerRadius)
+              .outerRadius(outerRadius);
+      
+      var pie = d3.layout.pie();
+      
+      //Easy colors accessible via a 10-step ordinal scale
+      var color = d3.scale.category10();
+
+      //Create SVG element
+      var svg = d3.select("#hot_zone_ca")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+      
+      //Set up groups
+      var arcs = svg.selectAll("g.arc")
+              .data(pie(dataset))
+              .enter()
+              .append("g")
+              .attr("class", "arc")
+              .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
+      
+      //Draw arc paths
+      arcs.append("path")
+          .attr("fill", function(d, i) {
+            return color(i);
+          })
+          .attr("d", arc);
+      
+      //Labels
+      /*arcs.append("text")
+          .attr("transform", function(d) {
+            return "translate(" + arc.centroid(d) + ")";
+          })
+          .attr("text-anchor", "middle")
+          .text(function(d) {
+            return d.value;
+          });*/
+  }
+
+
 	$(function() {
 		console.log('hello');
 
+    //handle the navigator
     $(".fa").bind("mouseover", function() {
       $("#text_navigator").css("visibility", "visible");
       console.log("show the element");
@@ -320,12 +365,14 @@
         $(this).css("color", "white");
     });
 
-    $(".ap_list_selector_icon > span").bind("click", function() {
+    //handle the ap list filter
+   /* $(".ap_list_selector_icon > span").bind("click", function() {
         var parentNode = $(this).parent().parent();
         $(".tab_item.selected").removeClass("selected");
         parentNode.addClass("selected");
-    });
+    }); */
 
+    //handle the tab switcher
     $(".tab_item span").bind("click", function(){
       var parentNode = $(this).parent().parent();
       var tab_item_id = parentNode.attr("id").substr(4);
@@ -337,6 +384,9 @@
       console.log("span clicked" + tab_item_id);
       $(".main_section").css("display", "none");
       $("#"+tab_item_id).css("display", "block");
+
+      //now load the data
+      loadAndRender(tab_item_id);
     });
 
     $(".ap_list_selector_icon span").bind("click", function(){
@@ -344,8 +394,8 @@
         var color = parentNode.attr("class").substr(22);
         console.log(color);
 
-        $(".table_record").css("display", "none");
-        $(".table_record").filter(function(index){
+        $("#ap_list .table_record").css("display", "none");
+        $("#ap_list .table_record").filter(function(index){
             var classname = $(this).children().eq(0).attr("class");
             console.log(classname + " " + color );
             console.log(classname.indexOf(color));
