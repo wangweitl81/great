@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Step 1 - A Basic Pie Chart</title>
+    <link rel="stylesheet" href="../styles/normalize.css">
+    <style type="text/css">
+    .ccircle {
+    	opacity: 0.3;
+    }
+
+    .content {
+    	background-image:  url(../images/img-map-us-grey.png)
+    }
+    </style>
+  </head>
+  <body>
+	<div class="content" style="border:1px red solid;width:300px;">
+		<h1>D3 Donut Pie Chart</h1>
+		<svg id="donut-chart"></svg>
+	</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script>
+      (function(d3) {
+        'use strict';
+		var seedData = [{
+		    "label": "React",
+		    "value": 25,
+		    "link": "https://facebook.github.io/react/"
+		}, {
+		    "label": "D3",
+		    "value": 0,
+		    "link": "http://d3js.org"
+		  }, {
+		    "label": "jQuery",
+		    "value": 25,
+		    "link": "https://jquery.com/"
+		  }, {
+		    "label": "AngularJS",
+		    "value": 25,
+		    "link": "https://angularjs.org/"
+		  }, ];
+
+		 var width = 200,
+	    height = 200,
+	    radius = Math.min(width, height) / 2;
+	 //   var colour = d3.scale.category20();
+	 	var colour = d3.scale.ordinal().range(['green', 'yellow', 'red', 'grey']);
+	    var arc = d3.svg.arc()
+	   .innerRadius(100)
+	   .outerRadius(70);
+
+		var pie = d3.layout.pie()
+			.value(function (d) { return d["value"]; })
+	   		.sort(null);
+
+	   var svg = d3.select("#donut-chart")
+		   .attr("width", width)
+		   .attr("height", height)
+		   .append("g")
+		   .attr("transform", "translate(" + radius + "," + radius + ")");
+
+	   var g = svg.selectAll(".arc")
+	   		.data(pie(seedData))
+		    .enter().append("g")
+		    .attr("class", "arc")
+		    .on("click", function(d, i) {
+		      window.location = seedData[i].link;
+		    });
+
+	    g.append("path")
+		  .attr("d", arc)
+		  .attr("fill", function(d, i) {
+		    return colour(i);
+		  });
+
+		g.append("text")
+		  .attr("transform", function(d) {
+		    return "translate(" + arc.centroid(d) + ")";
+		  })
+		  .attr("dy", ".35em")
+		  .style("text-anchor", "middle")
+		  .attr("fill", "#fff")
+		  //.text(function(d,i) { return seedData[i].label; })
+
+	  svg.append("circle")
+	   .attr("cx", 0)
+	   .attr("cy", 0)
+	   .attr("r", 75)
+	   .attr("fill", "green")
+	   .attr("class", "ccircle")
+
+
+	   ; // If you want to change the colour of the inner circle, change it here.
+	   
+	   svg.append("text")
+	  .attr("dy", "-0.5em")
+	  .style("text-anchor", "middle")
+	  .attr("class", "inner-circle")
+	  .attr("fill", "#36454f")
+	  .text(function(d) { return 'JavaScript'; });
+
+	svg.append("text")
+	  .attr("dy", "1.0em")
+	  .style("text-anchor", "middle")
+	  .attr("class", "inner-circle")
+	  .attr("fill", "#36454f")
+	  .text(function(d) { return 'is lots of fun!'; });
+       
+      })(window.d3);
+    </script>
+  </body>
+</html>
