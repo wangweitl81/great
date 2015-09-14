@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>RAN</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="./styles/jquery-ui-themes.css" type="text/css" rel="stylesheet">
+    <link href="./styles/font-awesome.css" type="text/css" rel="stylesheet">
+    <link href="./styles/main.css" type="text/css" rel="stylesheet">	
+</head>
+<body>
+
+<!-- NAVIGATION (Dynamic Panel) -->
+      <div id="navigator" class="fixed" data-label="NAVIGATION" style="z-index: 1018;">
+        <div id="icon_navigator" data-label="VERSION A">
+          <div id="navigator_content" class="panel_content">
+            <!-- PNAV - RAN (Shape) -->
+            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+             	<div class="navigator_item_icon">
+             		<i class="fa fa-signal"></i>
+             	</div>
+            </div>
+
+            <!-- PNAV - RAN (Shape) -->
+            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+             	<div class="navigator_item_icon">
+             		<i class="fa fa-cloud"></i>
+             	</div>
+            </div>
+
+            <!-- PNAV - RAN (Shape) -->
+            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+             	<div class="navigator_item_icon">
+             		<i class="fa fa-cogs"></i>
+             	</div>
+            </div>
+        </div>
+       </div>
+       <div id="text_navigator" style="visibility: hidden; z-index: 1016;">
+       	<div id="text_navigator_content">
+            <!-- PNAV - LABELS (Dynamic Panel) -->
+      			<!-- PNAV/LABEL - RAN (Shape) -->
+      			<div id="text_ran" class="text_navigator_item" data-label="PNAV/LABEL - RAN" selectiongroup="u637NAVIGATION">
+      				<!-- Unnamed () -->
+      				<div class="text_navigator_item_content">
+      				  <p class="text_navigator_item_text">
+      				  <span>RADIO ACCESS NETWORK</span>
+      				  </p>
+      				</div>
+      			</div>
+
+      			<div id="text_core" class="text_navigator_item" data-label="PNAV/LABEL - CORE" selectiongroup="u637NAVIGATION">
+      				<!-- Unnamed () -->
+      				<div class="text_navigator_item_content">
+      				  <p class="text_navigator_item_text">
+      				  <span>CORE</span>
+      				  </p>
+      				</div>
+      			</div>
+
+      			<div id="text_settings" class="text_navigator_item" data-label="PNAV/LABEL - SETTINGS" selectiongroup="u637NAVIGATION">
+      				<!-- Unnamed () -->
+      				<div class="text_navigator_item_content">
+      				  <p class="text_navigator_item_text">
+      				  <span>SETTINGS</span>
+      				  </p>
+      				</div>
+      			</div>				
+            </div>
+          </div>
+        </div>
+    <div class="main">
+    	<div id="main_banner">
+    		<p class="banner_text">
+    			<span style="color:#CCCCCC;">LUMINA</span>
+    			<span style="color:#666666;">TE </span>
+	    		<span style="color:#666666;">|&nbsp; </span>
+	    		<span style="color:#CCCCCC;">RADIO ACCESS NETWORK</span>
+    		</p>
+    	</div>
+    	<div id="main_tab">
+    		<div class="tab_item" id="tab_map">
+    			<p class="tab_item_text">
+    			<span id="cache1">MAPS</span>
+    			</p>
+    		</div>
+    		<div class="tab_item selected" id="tab_ap_list">
+    			<p class="tab_item_text">
+    			<span id="cache1">APs</span>
+    			</p>
+    		</div>
+    		<div class="tab_item" id="tab_alarm_list">
+    			<p class="tab_item_text">
+    			<span id="cache1">ALARMS</span>
+    			</p>
+    		</div>
+    	</div>
+      <div class="main_section" id="map" style="display:none;">
+        <div id="blank_map_v2" style="z-index:9999;">
+          <img src="./images/img-map-us-grey.png">
+        </div>
+      </div>
+      <div class="main_section" id="ap_list" style="display:block;">
+        <div id="select_group">
+          <div class="ap_list_selector_icon grey">
+            <p>
+              <span>1</span>
+            </p>
+          </div>
+          <div class="ap_list_selector_icon red">
+             <p>
+              <span>1</span>
+            </p>
+          </div>
+          <div class="ap_list_selector_icon yellow">
+             <p>
+              <span>1</span>
+            </p>
+          </div>
+          <div class="ap_list_selector_icon green">
+             <p>
+              <span>1</span>
+            </p>
+          </div>
+        </div>
+        <div id="table_header">
+          <div class="table_header_title" style="width:30px;">
+            <p>
+              <span></span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:358px;">
+            <p class="padding">
+              <span>AP</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:200px;">
+            <p class="padding">
+              <span>IP</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:200px;">
+            <p class="padding">
+              <span>REGION</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:180px;">
+            <p class="padding">
+              <span>UPTIME</span>
+            </p>
+          </div>
+          
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+          <div class="table_record">
+            <div class="table_record_section red" style="width:30px;">
+                
+            </div>
+            <div class="table_record_section" style="width:358px;">
+                <p>AP000001</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>192.168.0.1</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>Location</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>4days14hours</p>
+            </div> 
+          </div>   
+          <div class="table_record">
+            <div class="table_record_section green" style="width:30px;">
+            </div>
+            <div class="table_record_section" style="width:358px;">
+                <p>AP000002</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>192.168.0.1</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>Location</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>4days14hours</p>
+            </div> 
+          </div>    
+          <div class="table_record">
+            <div class="table_record_section yellow" style="width:30px;">
+            </div>
+            <div class="table_record_section" style="width:358px;">
+                <p>AP000002</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>192.168.0.1</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>Location</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>4days14hours</p>
+            </div> 
+          </div>   
+          <div class="table_record">
+            <div class="table_record_section grey" style="width:30px;">
+            </div>
+            <div class="table_record_section" style="width:358px;">
+                <p>AP000002</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>192.168.0.1</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>Location</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>4days14hours</p>
+            </div> 
+          </div>                                                     
+        </div>
+      </div>
+      <!-- start of alarm list -->
+      <div class="main_section" id="alarm_list" style="display:none;">
+        <div id="table_header">
+          <div class="table_header_title" style="width:380px;">
+            <p class="padding">
+              <span>ALARM</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:180px;">
+            <p class="padding">
+              <span>IP</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:80px;">
+            <p class="padding">
+              <span>SEVERITY</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:80px;">
+            <p class="padding">
+              <span>IP</span>
+            </p>
+          </div>
+          <div class="table_header_title" style="width:180px;">
+            <p class="padding">
+              <span>OCCURENCE</span>
+            </p>
+          </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+          <div class="table_record">
+            <div class="table_record_section" style="width:380px;">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
+            <div class="table_record_section" style="width:180px;">
+                <p>192.168.0.1</p>
+            </div>
+            <div class="table_record_section" style="width:80px;">
+                <p>CRITICAL</p>
+            </div>
+            <div class="table_record_section" style="width:80px;">
+                <p>000.00.000.00</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>6/28/2015 00:00 AM</p>
+            </div> 
+          </div>   
+         <div class="table_record">
+            <div class="table_record_section" style="width:380px;">
+                <p>Sed posuere consectetur est at lobortis.</p>
+            </div>
+            <div class="table_record_section" style="width:180px;">
+                <p>192.168.0.1</p>
+            </div>
+            <div class="table_record_section" style="width:80px;">
+                <p>CRITICAL</p>
+            </div>
+            <div class="table_record_section" style="width:80px;">
+                <p>000.00.000.00</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>6/28/2015 00:00 AM</p>
+            </div> 
+          </div>                                          
+        </div>
+      </div>
+      <!-- end of ap list-->
+
+    </div>
+          
+
+
+<script src="./scripts/jquery-1.7.1.min.js"></script>
+<script src="./scripts/jquery-ui-1.8.10.custom.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		console.log('hello');
+
+    $(".fa").bind("mouseover", function() {
+      $("#text_navigator").css("visibility", "visible");
+      console.log("show the element");
+    });
+    $("#text_navigator").bind("mouseout", function(){
+      $("#text_navigator").css("visibility", "hidden");
+      console.log("hide the element");
+    });
+
+    $("#text_navigator .text_navigator_item_text").bind("mouseover", function(){
+        $(this).css("color", "#0000aa");
+    }).bind("mouseout", function() {
+        $(this).css("color", "white");
+    });
+
+    $(".ap_list_selector_icon > span").bind("click", function() {
+        var parentNode = $(this).parent().parent();
+        $(".tab_item.selected").removeClass("selected");
+        parentNode.addClass("selected");
+    });
+
+    $(".tab_item span").bind("click", function(){
+      var parentNode = $(this).parent().parent();
+      var tab_item_id = parentNode.attr("id").substr(4);
+
+      //set the select status
+      $(".tab_item").removeClass("selected");
+      parentNode.addClass("selected");
+
+      console.log("span clicked" + tab_item_id);
+      $(".main_section").css("display", "none");
+      $("#"+tab_item_id).css("display", "block");
+    });
+
+    $(".ap_list_selector_icon span").bind("click", function(){
+        var parentNode = $(this).parent().parent();
+        var color = parentNode.attr("class").substr(22);
+        console.log(color);
+
+        $(".table_record").css("display", "none");
+        $(".table_record").filter(function(index){
+            var classname = $(this).children().eq(0).attr("class");
+            console.log(classname + " " + color );
+            console.log(classname.indexOf(color));
+            return classname.indexOf(color) > 0;
+        }).css("display", "block");
+        //console.log(arr.length);
+    });
+
+	});
+</script>
+
+</body>
+</html>
