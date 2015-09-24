@@ -25,5 +25,19 @@ message AP {
 
 //APList contains a list of ap information
 message APList {
-	repeated AP ap = 1;
+	repeated AP ap = 1; 
+}
+
+message QueryRequest {
+	string item = 1;  //query item
+}
+
+message QueryList {
+	repeated QueryRequest request = 1; //a couple of requests to make a combined query
+}
+
+service AP {
+	rpc GetAPList() returns (APList); //get the full list of aps
+	
+	rpc FilterAP(QueryList requestList) returns (APList);  //use combined requests to filter aps
 }
