@@ -1,0 +1,29 @@
+//proto for ap list 
+syntax = "proto3";
+
+package com.lwms;
+
+option java_package = "com.lwms.api";
+option java_outer_classname = "APListProtos";
+
+message AP {
+	int32 id = 1;  //unique id for this ap
+	string name = 2; 
+	
+    enum APStatus {
+    	GREEN = 0;
+    	YELLOW = 1;
+    	RED = 2;
+    	GRAY = 3;
+    }
+    
+    APStatus status = 3;
+	string ip = 4;
+	string region = 5;
+	string uptime = 6;
+}
+
+//APList contains a list of ap information
+message APList {
+	repeated AP ap = 1;
+}

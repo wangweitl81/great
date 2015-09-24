@@ -1,0 +1,266 @@
+# The following dependencies were calculated from:
+# /Users/wangwei/Dev/git/java/embedded-jetty-jsp/pom.xml
+
+
+# org.eclipse.jetty.demo:embedded-jetty-jsp:jar:1-SNAPSHOT
+maven_jar(
+    name = "org/eclipse/jetty/apache-jstl",
+    artifact = "org.eclipse.jetty:apache-jstl:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty:jetty-annotations:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-plus",
+    artifact = "org.eclipse.jetty:jetty-plus:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty:apache-jstl:jar:9.3.4.RC0
+maven_jar(
+    name = "org/apache/taglibs/taglibs-standard-spec",
+    artifact = "org.apache.taglibs:taglibs-standard-spec:1.2.1",
+)
+
+# org.eclipse.jetty:apache-jsp:jar:9.3.4.RC0
+maven_jar(
+    name = "org/mortbay/jasper/apache-jsp",
+    artifact = "org.mortbay.jasper:apache-jsp:8.0.23.M1",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+# org.apache.tomcat:tomcat-util-scan:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-api",
+    artifact = "org.apache.tomcat:tomcat-api:8.0.23",
+)
+
+# org.eclipse.jetty:jetty-plus:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-annotations:jar:9.3.4.RC0
+# org.eclipse.jetty.demo:embedded-jetty-jsp:jar:1-SNAPSHOT
+maven_jar(
+    name = "org/eclipse/jetty/jetty-webapp",
+    artifact = "org.eclipse.jetty:jetty-webapp:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+maven_jar(
+    name = "org/eclipse/jdt/core/compiler/ecj",
+    artifact = "org.eclipse.jdt.core.compiler:ecj:4.4.2",
+)
+
+# org.eclipse.jetty:apache-jsp:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/orbit/org/eclipse/jdt/core",
+    artifact = "org.eclipse.jetty.orbit:org.eclipse.jdt.core:3.8.2.v20130121",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+# org.apache.tomcat:tomcat-util:jar:8.0.23
+# org.apache.tomcat:tomcat-util-scan:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-juli",
+    artifact = "org.apache.tomcat:tomcat-juli:8.0.23",
+)
+
+# org.mortbay.jasper:apache-jsp:jar:8.0.23.M1
+maven_jar(
+    name = "org/apache/tomcat/tomcat-jasper",
+    artifact = "org.apache.tomcat:tomcat-jasper:8.0.23",
+)
+
+# org.eclipse.jetty:jetty-server:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-io",
+    artifact = "org.eclipse.jetty:jetty-io:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.mortbay.jasper:apache-jsp:jar:8.0.23.M1
+maven_jar(
+    name = "org/mortbay/jasper/apache-el",
+    artifact = "org.mortbay.jasper:apache-el:8.0.23.M1",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jdt.core.compiler:ecj:jar:4.4.2
+maven_jar(
+    name = "org/apache/ant/ant",
+    artifact = "org.apache.ant:ant:1.9.4",
+)
+
+# org.apache.tomcat:tomcat-util-scan:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-util",
+    artifact = "org.apache.tomcat:tomcat-util:8.0.23",
+)
+
+# org.eclipse.jetty:jetty-servlet:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-security",
+    artifact = "org.eclipse.jetty:jetty-security:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty:apache-jstl:jar:9.3.4.RC0
+maven_jar(
+    name = "org/apache/taglibs/taglibs-standard-impl",
+    artifact = "org.apache.taglibs:taglibs-standard-impl:1.2.1",
+)
+
+# org.mortbay.jasper:apache-el:jar:8.0.23.M1
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-jasper-el",
+    artifact = "org.apache.tomcat:tomcat-jasper-el:8.0.23",
+)
+
+# org.apache.ant:ant:jar:1.9.4
+maven_jar(
+    name = "org/apache/ant/ant-launcher",
+    artifact = "org.apache.ant:ant-launcher:1.9.4",
+)
+
+# org.ow2.asm:asm-commons:jar:5.0.1
+maven_jar(
+    name = "org/ow2/asm/asm-tree",
+    artifact = "org.ow2.asm:asm-tree:5.0.1",
+)
+
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-util-scan",
+    artifact = "org.apache.tomcat:tomcat-util-scan:8.0.23",
+)
+
+# org.eclipse.jetty:jetty-webapp:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-xml",
+    artifact = "org.eclipse.jetty:jetty-xml:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.mortbay.jasper:apache-jsp:jar:8.0.23.M1
+# org.eclipse.jetty:apache-jsp:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/toolchain/jetty-schemas",
+    artifact = "org.eclipse.jetty.toolchain:jetty-schemas:3.1.M0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty:jetty-servlet:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-webapp:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-server:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-jmx",
+    artifact = "org.eclipse.jetty:jetty-jmx:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+# org.apache.tomcat:tomcat-jsp-api:jar:8.0.23
+# org.apache.tomcat:tomcat-api:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-servlet-api",
+    artifact = "org.apache.tomcat:tomcat-servlet-api:8.0.23",
+)
+
+# org.eclipse.jetty:jetty-webapp:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-servlet",
+    artifact = "org.eclipse.jetty:jetty-servlet:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.mortbay.jasper:apache-el:jar:8.0.23.M1
+# org.eclipse.jetty.demo:embedded-jetty-jsp:jar:1-SNAPSHOT
+# org.eclipse.jetty:apache-jsp:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-server:jar:9.3.4.RC0
+maven_jar(
+    name = "javax/servlet/javax/servlet-api",
+    artifact = "javax.servlet:javax.servlet-api:3.1.0",
+)
+
+# org.eclipse.jetty:jetty-security:jar:9.3.4.RC0
+# org.eclipse.jetty:apache-jsp:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-server",
+    artifact = "org.eclipse.jetty:jetty-server:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty.demo:embedded-jetty-jsp:jar:1-SNAPSHOT
+maven_jar(
+    name = "org/eclipse/jetty/apache-jsp",
+    artifact = "org.eclipse.jetty:apache-jsp:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty:jetty-annotations:jar:9.3.4.RC0
+maven_jar(
+    name = "org/ow2/asm/asm-commons",
+    artifact = "org.ow2.asm:asm-commons:5.0.1",
+)
+
+# org.ow2.asm:asm-tree:jar:5.0.1
+# org.eclipse.jetty:jetty-annotations:jar:9.3.4.RC0
+maven_jar(
+    name = "org/ow2/asm/asm",
+    artifact = "org.ow2.asm:asm:5.0.1",
+)
+
+# org.eclipse.jetty:jetty-plus:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-jndi",
+    artifact = "org.eclipse.jetty:jetty-jndi:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty.demo:embedded-jetty-jsp:jar:1-SNAPSHOT
+maven_jar(
+    name = "org/eclipse/jetty/jetty-annotations",
+    artifact = "org.eclipse.jetty:jetty-annotations:9.3.4.RC0",
+)
+
+# org.eclipse.jetty:jetty-annotations:jar:9.3.4.RC0
+maven_jar(
+    name = "javax/annotation/javax/annotation-api",
+    artifact = "javax.annotation:javax.annotation-api:1.2",
+)
+
+# org.apache.tomcat:tomcat-jasper-el:jar:8.0.23
+# org.apache.tomcat:tomcat-jsp-api:jar:8.0.23
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-el-api",
+    artifact = "org.apache.tomcat:tomcat-el-api:8.0.23",
+)
+
+# org.apache.tomcat:tomcat-jasper:jar:8.0.23
+maven_jar(
+    name = "org/apache/tomcat/tomcat-jsp-api",
+    artifact = "org.apache.tomcat:tomcat-jsp-api:8.0.23",
+)
+
+# org.eclipse.jetty:jetty-jndi:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-http:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-io:jar:9.3.4.RC0
+# org.eclipse.jetty:apache-jsp:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-jmx:jar:9.3.4.RC0
+# org.eclipse.jetty:jetty-xml:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-util",
+    artifact = "org.eclipse.jetty:jetty-util:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+
+# org.eclipse.jetty:jetty-server:jar:9.3.4.RC0
+maven_jar(
+    name = "org/eclipse/jetty/jetty-http",
+    artifact = "org.eclipse.jetty:jetty-http:9.3.4.RC0",
+    repository = "https://oss.sonatype.org/content/groups/jetty/",
+)
+

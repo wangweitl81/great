@@ -14,6 +14,10 @@ body {
     text-align: left;
 }
 
+p {
+	margin: 0px auto;
+}
+
 .fixed {
 	position: fixed;
     left: 0px;
@@ -40,6 +44,16 @@ body {
     left: 0px;
     top: 0px;
 }
+
+span {
+	float: left;
+	margin: 0px auto;
+	padding: 0px;
+}
+
+.tab_item_text  > span {
+	text-align: center;
+} 
 
 .navigator_item {
     width: 80px;
@@ -92,6 +106,7 @@ body {
 	width: 980px;
 	height: 80px;
 	padding-left: 3px;
+	padding-top: 20px;
 }
 
 .banner_text {
@@ -102,6 +117,38 @@ body {
     font-style: normal;
     font-size: 18px;
     text-align: left;
+}
+
+#search_bar {
+	float: right;
+    width: 580px;
+    height: 40px;
+    font-family: 'FontAwesome';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    color: #999999;
+    text-align: right;
+}
+
+#search_bar.highlight {
+	background-image: url("../images/searchbar.png");
+}
+
+#key_search {
+	float: left;
+	width: 520px;
+    height: 40px;
+    background-color: transparent;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    text-decoration: none;
+    color: #FFFFFF;
+    text-align: left;
+    border-color: transparent;
+    outline-style: none;
 }
 
 #main_tab {
@@ -148,6 +195,10 @@ body {
 	margin-top: 30px;
 }
 
+.table_header_column {
+	padding-top: 24px;
+}
+
 .ap_list_selector_icon {
     width: 50px;
     height: 50px;
@@ -160,6 +211,11 @@ body {
     float: right;
     margin: 5px;
     text-align: center;
+}
+
+.icon_text {
+	padding-top: 18px ;
+	padding-left: 22px;
 }
 
 .ap_list_selector_icon.green {
@@ -178,7 +234,7 @@ body {
 	background-image: url(../images/grey_ring.png);
 }
 
-.ap_list_selector_icon span {
+.ap_list_selector_icon p {
 	cursor: pointer;
 }
 
