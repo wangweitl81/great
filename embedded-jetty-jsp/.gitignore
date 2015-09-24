@@ -1,0 +1,7 @@
+.settings
+target/
+*.swp
+*.log
+bazel-*
+*.bak
+*~
