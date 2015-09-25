@@ -1,0 +1,23 @@
+java_library(
+  name = "web",
+  visibility = ["//visibility:public"],
+  srcs = glob(["*.java"]),
+  deps = [
+  		"//src/main/java/ca/unx/template:main",
+        "@org/springframework/spring-context//jar",
+        "@org/springframework/security/spring-security-config//jar",
+        "@org/springframework/spring-web//jar",
+        "@org/slf4j/slf4j-api//jar",
+        "@org/thymeleaf/thymeleaf-spring4//jar",
+        "@org/eclipse/jetty/jetty-webapp//jar",
+        "@io/dropwizard/metrics/metrics-servlets//jar",
+        "@javax/servlet/javax/servlet-api//jar",
+        "@org/springframework/security/spring-security-core//jar",
+        "@io/dropwizard/metrics/metrics-core//jar",
+        "@org/springframework/spring-webmvc//jar",
+        "@org/springframework/security/spring-security-web//jar",
+        "@org/codehaus/groovy/groovy//jar",
+        "@org/slf4j/jcl-over-slf4j//jar",
+        "@ch/qos/logback/logback-classic//jar",
+  ],
+)

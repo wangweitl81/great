@@ -1,0 +1,99 @@
+# The following dependencies were calculated from:
+# /Users/wangwei/Dev/git/jetty-springmvc-thymeleaf-template/pom.xml
+
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/springframework/spring-context",
+    artifact = "org.springframework:spring-context:4.1.4.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/springframework/security/spring-security-config",
+    artifact = "org.springframework.security:spring-security-config:3.2.5.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/springframework/spring-web",
+    artifact = "org.springframework:spring-web:4.1.4.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/slf4j/slf4j-api",
+    artifact = "org.slf4j:slf4j-api:1.7.10",
+)
+
+maven_jar(
+	name = "org/thymeleaf/thymeleaf",
+	artifact = "org.thymeleaf:thymeleaf:2.1.4.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/thymeleaf/thymeleaf-spring4",
+    artifact = "org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/eclipse/jetty/jetty-webapp",
+    artifact = "org.eclipse.jetty:jetty-webapp:9.2.6.v20141205",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "io/dropwizard/metrics/metrics-servlets",
+    artifact = "io.dropwizard.metrics:metrics-servlets:3.1.0",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "javax/servlet/javax/servlet-api",
+    artifact = "javax.servlet:javax.servlet-api:3.1.0",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/springframework/security/spring-security-core",
+    artifact = "org.springframework.security:spring-security-core:3.2.5.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "io/dropwizard/metrics/metrics-core",
+    artifact = "io.dropwizard.metrics:metrics-core:3.1.0",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/springframework/spring-webmvc",
+    artifact = "org.springframework:spring-webmvc:4.1.4.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/springframework/security/spring-security-web",
+    artifact = "org.springframework.security:spring-security-web:3.2.5.RELEASE",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/codehaus/groovy/groovy",
+    artifact = "org.codehaus.groovy:groovy:2.1.9",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "org/slf4j/jcl-over-slf4j",
+    artifact = "org.slf4j:jcl-over-slf4j:1.7.10",
+)
+
+# ca.unx:jetty-springmvc-thymeleaf-template:jar:0.0.1-SNAPSHOT
+maven_jar(
+    name = "ch/qos/logback/logback-classic",
+    artifact = "ch.qos.logback:logback-classic:1.1.2",
+)
+
