@@ -1,4 +1,4 @@
-package com.lw.ms.web;
+package com.luminate.wconsole.web;
 
 import java.util.List;
 
@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.googlecode.protobuf.format.JsonFormat;
-import com.lw.ms.config.WebAppEnv;
-import com.lw.ms.service.APService;
-import com.lwms.api.APListProtos.AP;
+import com.luminate.wconsole.config.WebAppEnv;
+import com.luminate.wconsole.service.APService;
 import com.lwms.api.APListProtos.APList;
 
 @Controller

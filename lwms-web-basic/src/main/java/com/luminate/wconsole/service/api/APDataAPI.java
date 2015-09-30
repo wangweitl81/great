@@ -1,4 +1,4 @@
-package com.lw.ms.service.api;
+package com.luminate.wconsole.service.api;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.lw.ms.config;
+package com.luminate.wconsole.config;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.health.HealthCheckRegistry;
@@ -18,8 +18,8 @@ import org.springframework.stereotype.Controller;
  */
 @Configuration
 @ImportResource({"classpath:META-INF/spring/root-context.xml"})
-@Import({com.lw.ms.config.JettyConfiguration.class, com.lw.ms.config.SpringSecurityConfig.class})
-@ComponentScan(basePackages = {"com.lw.ms"},
+@Import({com.luminate.wconsole.config.JettyConfiguration.class, com.luminate.wconsole.config.SpringSecurityConfig.class})
+@ComponentScan(basePackages = {"com.luminate.wconsole"},
         excludeFilters = {@ComponentScan.Filter(Controller.class),
                 @ComponentScan.Filter(Configuration.class)})
 public class RootConfiguration {

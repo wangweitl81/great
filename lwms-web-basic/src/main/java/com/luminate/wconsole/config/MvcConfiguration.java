@@ -1,4 +1,4 @@
-package com.lw.ms.config;
+package com.luminate.wconsole.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +28,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(useDefaultFilters = false, basePackages = {"com.lw.ms"},
+@ComponentScan(useDefaultFilters = false, basePackages = {"com.luminate.wconsole"},
         includeFilters = {@ComponentScan.Filter(Controller.class)})
 @ImportResource("classpath:META-INF/spring/servlet-context.xml")
 public class MvcConfiguration extends WebMvcConfigurerAdapter {

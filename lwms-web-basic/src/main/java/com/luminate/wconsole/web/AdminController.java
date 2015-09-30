@@ -23,42 +23,19 @@
  * SOFTWARE.
  */
 
-package com.lw.ms;
+package com.luminate.wconsole.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import java.util.logging.Handler;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * A dummy service for testing Spring injection.
- */
-@Service
-public class EchoService {
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
 
-    final Logger logger = LoggerFactory.getLogger(getClass());
-
-    private static EchoService instance = null;
-
-    public EchoService() {
-        /**
-         * This is here to detect if we get instantiated 2x.  While starting
-         * with SpringMVC with Jetty embedded I found that I could get into
-         * a case where the web application would recreate all the beans
-         * already created outside of the web app context.  The component
-         * scan filters should prevent this.
-         */
-        if (instance != null) {
-            throw new RuntimeException(
-                    "DummyServer has already been instantiated.");
-        }
-        instance = this;
-
-        logger.info("EchoService initialized.");
-    }
-
-    public String echo(String msg) {
-        return new String(msg);
+    @RequestMapping("")
+    public @ResponseBody String index() {
+        return "This is the admin section.";
     }
 
 }

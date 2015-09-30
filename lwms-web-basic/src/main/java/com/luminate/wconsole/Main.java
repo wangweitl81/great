@@ -1,4 +1,4 @@
-package com.lw.ms;
+package com.luminate.wconsole;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,8 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.google.common.base.Strings;
-import com.lw.ms.config.RootConfiguration;
-import com.lw.ms.config.WebAppEnv;
+import com.luminate.wconsole.config.RootConfiguration;
+import com.luminate.wconsole.config.WebAppEnv;
 
 /**
  * Application entry point.
@@ -55,6 +55,8 @@ public class Main {
         		}
         	} 
         }
+        
+        logger.info("Jetty server has started at port: " + WebAppEnv.getJettyPort());
         
         try {
             AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();

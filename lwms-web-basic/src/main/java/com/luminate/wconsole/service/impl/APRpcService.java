@@ -1,10 +1,10 @@
-package com.lw.ms.service.impl;
+package com.luminate.wconsole.service.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.lw.ms.service.api.APDataAPI;
+import com.luminate.wconsole.service.api.APDataAPI;
 import com.lwms.api.APListProtos.AP;
 import com.lwms.api.APListProtos.APList;
 

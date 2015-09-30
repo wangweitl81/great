@@ -1,13 +1,13 @@
-package com.lw.ms.service;
+package com.luminate.wconsole.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lw.ms.config.WebAppEnv;
-import com.lw.ms.service.impl.APRestService;
-import com.lw.ms.service.impl.APRpcService;
+import com.luminate.wconsole.config.WebAppEnv;
+import com.luminate.wconsole.service.impl.APRestService;
+import com.luminate.wconsole.service.impl.APRpcService;
 import com.lwms.api.APListProtos.APList;
 
 @Service

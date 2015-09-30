@@ -1,4 +1,4 @@
-package com.lw.ms.config;
+package com.luminate.wconsole.config;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

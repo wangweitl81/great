@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-package com.lw.ms.config;
+package com.luminate.wconsole.config;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.health.HealthCheckRegistry;

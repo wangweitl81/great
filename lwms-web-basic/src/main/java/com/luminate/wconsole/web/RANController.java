@@ -1,4 +1,4 @@
-package com.lw.ms.web;
+package com.luminate.wconsole.web;
 
 import java.util.Locale;
 

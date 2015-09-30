@@ -1,4 +1,4 @@
-package com.lw.ms.config;
+package com.luminate.wconsole.config;
 
 /**
  * The configuration class to save the properties from command line
