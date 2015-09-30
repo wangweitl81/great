@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/home/wangwei/Dev/git/great/lwms-web-basic"
 		}
 	]
 }
