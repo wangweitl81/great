@@ -1,0 +1,41 @@
+ <!-- start of alarm list -->
+      <div class="main_section" id="alarm_list">
+        <div id="table_header">
+          <div class="table_header_title" style="width:380px;">
+            <span class="table_header_column">ALARMS</span>
+          </div>
+          <div class="table_header_title" style="width:110px;">
+            <span class="table_header_column">IP</span>
+          </div>
+          <div class="table_header_title" style="width:140px;">
+            <span class="table_header_column">SEVERITY</span>
+          </div>
+          <div class="table_header_title" style="width:120px;">
+            <span class="table_header_column">IP</span>
+          </div>
+          <div class="table_header_title" style="width:150px;">
+			<span class="table_header_column">OCCURENCE</span>
+          </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+        	<div class="table_record" ng-repeat="alarm in alarmlist">
+            <div class="table_record_section highlight" style="width:380px;">
+            	<p>{{alarm.alarm}}</p>
+            </div>
+            <div class="table_record_section" style="width:110px;">
+                <p>{{alarm.ip}}</p>
+            </div>
+            <div class="table_record_section" style="width:140px;">
+                <p>{{alarm.severity}}</p>
+            </div>
+            <div class="table_record_section" style="width:120px;">
+                <p>{{alarm.ipv6}}</p>
+            </div>  
+            <div class="table_record_section" style="width:150px;">
+                <p>{{alarm.occurence}}</p>
+            </div> 
+          </div>   
+        </div>
+      </div>

@@ -1,0 +1,22 @@
+<div id="main_tab">
+	<div class="tab_item selected" id="tab_map">
+		<p class="tab_item_text"><a ui-sref=".map">MAP</a></p>
+	</div>
+	<div class="tab_item" id="tab_ap_list">
+		<p class="tab_item_text"><a ui-sref=".aplist">APS</a></p>
+	</div>
+	<div class="tab_item" id="tab_alarm_list">
+		<p class="tab_item_text"><a ui-sref=".alarmlist">ALARMS</a></p>
+	</div>
+   <div class="dropdown" style="float:right;">
+     <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color:white;text-decoration:none;">
+       ...
+     </button>
+     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+       <li><a href="#">SHARE</a></li>
+       <li><a href="#">PRINT</a></li>
+       <li><a href="#">CUSTOMIZE</a></li>
+       </ul>
+   </div>
+</div>
+<div ui-view=""></div>

@@ -8,9 +8,9 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
     <meta name="apple-mobile-web-app-capable" content="yes"></meta>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="./styles/bootstrap.min.css" th:href="@{/styles/bootstrap.min.css}"></link>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></link>
+    <link rel="stylesheet" href="./styles/bootstrap-theme.min.css" th:href="@{/styles/bootstrap-theme.min.css}"></link>
     <link href="./styles/jquery-ui-themes.css" th:href="@{/styles/jquery-ui-themes.css}"  type="text/css" rel="stylesheet"></link>
     <link href="./styles/font-awesome.css" th:href="@{/styles/font-awesome.css}" type="text/css" rel="stylesheet"></link>
     <link href="./styles/main.css" th:href="@{/styles/main.css}" type="text/css" rel="stylesheet"></link>
@@ -245,9 +245,10 @@
     </div>
 <script src="./scripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
 <script src="./scripts/jquery-ui-1.8.10.custom.min.js" th:src="@{/scripts/jquery-ui-1.8.10.custom.min.js}"></script>
-<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script src="./scripts/d3.min.js" th:src="@{/scripts/d3.min.js}"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="./scripts/bootstrap.min.js" th:src="@{/scripts/bootstrap.min.js}"></script>
+<script src="./scripts/mustache.js" th:src="@{/scripts/mustache.js}"></script>
 
 <script type="text/javascript">
   function renderData(serviceName, data) {
@@ -415,16 +416,6 @@
           .attr("font-size", "20px")
           .text(function(d) { return '45'; });
       }
-      
-      //Labels
-      /*arcs.append("text")
-          .attr("transform", function(d) {
-            return "translate(" + arc.centroid(d) + ")";
-          })
-          .attr("text-anchor", "middle")
-          .text(function(d) {
-            return d.value;
-          });*/
   }
 
 

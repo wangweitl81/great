@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="console">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+    <meta name="robots" content="noindex, nofollow"></meta>
+    <title>console</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+    <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+    <link rel="stylesheet" href="./styles/bootstrap.min.css" th:href="@{/styles/bootstrap.min.css}"></link>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="./styles/bootstrap-theme.min.css" th:href="@{/styles/bootstrap-theme.min.css}"></link>
+    <link href="./styles/jquery-ui-themes.css" th:href="@{/styles/jquery-ui-themes.css}"  type="text/css" rel="stylesheet"></link>
+    <link href="./styles/font-awesome.css" th:href="@{/styles/font-awesome.css}" type="text/css" rel="stylesheet"></link>
+    <link href="./styles/main.css" th:href="@{/styles/main.css}" type="text/css" rel="stylesheet"></link>
+    
+  <style type="text/css">
+      .ccircle{
+        opacity: 0.8;
+      }
+
+      .inner-circle {
+        font-family: "sans-serif";
+        font-size: "20px";
+      }
+    </style>	
+</head>
+<body>
+
+<!-- NAVIGATION (Dynamic Panel) -->
+      <div id="navigator" class="fixed" data-label="NAVIGATION" style="z-index: 1018;">
+        <div id="icon_navigator" data-label="VERSION A">
+          <div id="navigator_content" class="panel_content">
+            <!-- PNAV - RAN (Shape) -->
+            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+             	<div class="navigator_item_icon">
+             		<a ui-sref="ran"><i class="fa fa-signal"></i></a>
+             	</div>
+            </div>
+
+            <!-- PNAV - RAN (Shape) -->
+            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+             	<div class="navigator_item_icon">
+             		<i class="fa fa-cloud"></i>
+             	</div>
+            </div>
+
+            <!-- PNAV - RAN (Shape) -->
+            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+             	<div class="navigator_item_icon">
+             		<i class="fa fa-cogs"></i>
+             	</div>
+            </div>
+        </div>
+       </div>
+       <div id="text_navigator" style="visibility: hidden; z-index: 1016;">
+       	<div id="text_navigator_content">
+            <!-- PNAV - LABELS (Dynamic Panel) -->
+      			<!-- PNAV/LABEL - RAN (Shape) -->
+      			<div id="text_ran" class="text_navigator_item" data-label="PNAV/LABEL - RAN" selectiongroup="u637NAVIGATION">
+      				<!-- Unnamed () -->
+      				<div class="text_navigator_item_content">
+      				  <p class="text_navigator_item_text">
+      				  <span><a ui-sref="ran">RADIO ACCESS NETWORK</a></span>
+      				  </p>
+      				</div>
+      			</div>
+
+      			<div id="text_core" class="text_navigator_item" data-label="PNAV/LABEL - CORE" selectiongroup="u637NAVIGATION">
+      				<!-- Unnamed () -->
+      				<div class="text_navigator_item_content">
+      				  <p class="text_navigator_item_text">
+      				  <span>CORE</span>
+      				  </p>
+      				</div>
+      			</div>
+
+
+      			<div id="text_settings" class="text_navigator_item" data-label="PNAV/LABEL - SETTINGS" selectiongroup="u637NAVIGATION">
+      				<!-- Unnamed () -->
+      				<div class="text_navigator_item_content">
+      				  <p class="text_navigator_item_text">
+      				  <span>SETTINGS</span>
+      				  </p>
+      				</div>
+      			</div>				
+            </div>
+          </div>
+        </div>
+    <div class="main">
+    	<div id="main_banner">
+        <div style="width:350px;float:left;height:40px;">
+    		<p class="banner_text">
+    			<span style="color:#CCCCCC;">LUMINA</span>
+    			<span style="color:#666666;">TE </span>
+	    		<span style="color:#666666;">|&nbsp; </span>
+	    		<span style="color:#CCCCCC;">RADIO ACCESS NETWORK</span>
+    		</p>
+        </div>
+        <div id="search_bar" style="cursor: pointer;">
+          <div style="transform-origin: 290px 10px 0px;">
+            <input type="search" id="key_search" name="key_search" />
+            <p style="margin:0px auto;padding-top:10px;">
+              <i class="fa fa-search" id="search_icon"></i>
+            </p>
+          </div>
+        </div>
+    	</div>
+    	
+    	<div ui-view=""></div>
+
+    </div>
+      <!-- Angular -->
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.js"></script>
+  <!-- UI-Router -->
+  <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+
+  <!-- App Script -->
+  <script src="./scripts/console.js" th:src="@{/scripts/console.js}"></script>
+<script src="./scripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
+<script src="./scripts/jquery-ui-1.8.10.custom.min.js" th:src="@{/scripts/jquery-ui-1.8.10.custom.min.js}"></script>
+<script src="./scripts/d3.min.js" th:src="@{/scripts/d3.min.js}"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="./scripts/bootstrap.min.js" th:src="@{/scripts/bootstrap.min.js}"></script>
+<script src="./scripts/mustache.js" th:src="@{/scripts/mustache.js}"></script>
+
+<script type="text/javascript">
+
+	$(function() {
+		console.log('hello');
+
+    //handle the navigator
+    $(".fa").bind("mouseover", function() {
+      $("#text_navigator").css("visibility", "visible");
+      console.log("show the element");
+    });
+    $("#text_navigator").bind("mouseout", function(){
+      $("#text_navigator").css("visibility", "hidden");
+      console.log("hide the element");
+    });
+
+    $("#text_navigator .text_navigator_item_text").bind("mouseover", function(){
+        $(this).css("color", "#0000aa");
+    }).bind("mouseout", function() {
+        $(this).css("color", "white");
+    });
+
+    setupHotspots();
+
+    $("#search_icon").bind("click", function() {
+      $("#search_bar").addClass("highlight");
+    });
+
+    //handle the tab switcher
+    $("body").delegate(".tab_item p", "click", function(){
+      var parentNode = $(this).parent();
+      var tab_item_id = parentNode.attr("id").substr(4);
+
+      //set the select status
+      $(".tab_item").removeClass("selected");
+      parentNode.addClass("selected");
+
+     /*  console.log("span clicked" + tab_item_id);
+      $(".main_section").css("display", "none");
+      $("#"+tab_item_id).css("display", "block"); */
+
+      //now load the data
+     // loadAndRender(tab_item_id);
+    });
+
+    $(".ap_list_selector_icon p").bind("click", function(){
+        var parentNode = $(this).parent();
+        var color = parentNode.attr("class").substr(22);
+        console.log(color);
+
+        $("#ap_list .table_record").css("display", "none");
+        $("#ap_list .table_record").filter(function(index){
+            var classname = $(this).children().eq(0).attr("class");
+            console.log(classname + " " + color );
+            console.log(classname.indexOf(color));
+            return classname.indexOf(color) > 0;
+        }).css("display", "block");
+        //console.log(arr.length);
+    });
+
+	});
+</script>
+
+</body>
+</html>

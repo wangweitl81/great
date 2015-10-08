@@ -14,12 +14,12 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<springframework.version>4.1.4.RELEASE</springframework.version>
-		<springsecurity.version>3.2.5.RELEASE</springsecurity.version>
+<!-- 		<springsecurity.version>3.2.5.RELEASE</springsecurity.version> -->
 		<slf4j.version>1.7.10</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 		<commons.logging.version>1.2</commons.logging.version>
 		<jetty.version>9.3.3.v20150827</jetty.version>
-		<dropwizard.metrics.version>3.1.0</dropwizard.metrics.version>
+<!-- 		<dropwizard.metrics.version>3.1.0</dropwizard.metrics.version> -->
 		<thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
 		<junit.version>4.11</junit.version>
 	</properties>
@@ -51,7 +51,7 @@
 		</dependency>
 
 		<!-- Spring Security -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${springsecurity.version}</version>
@@ -65,7 +65,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${springsecurity.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- Test -->
 		<dependency>
@@ -132,7 +132,7 @@
 		</dependency>
 
 		<!-- Dropwizard Metrics -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-core</artifactId>
 			<version>${dropwizard.metrics.version}</version>
@@ -141,7 +141,7 @@
 			<groupId>io.dropwizard.metrics</groupId>
 			<artifactId>metrics-servlets</artifactId>
 			<version>${dropwizard.metrics.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>com.beust</groupId>
 			<artifactId>jcommander</artifactId>

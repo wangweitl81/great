@@ -1,0 +1,13 @@
+<div class='row'>
+  <div class="col-sm-4 col-md-4 col-lg-4">
+  <table class="table table-condensed">
+    <tr>
+      <td>Name<span class='pull-right'><input class='small' type='search' ng-model='search' placeholder='filter...'></input></span></td>
+    </tr>
+    <tr ng-repeat='person in personnel | filter:search'>
+      <td><a ui-sref='personnel.list.person({id: person.id})'>{{person.name}}</a></td>
+    </tr>
+  </table>
+  </div>
+  <div class='col-sm-8 col-md-8 col-lg-8 well' ui-view=""></div>
+</div>

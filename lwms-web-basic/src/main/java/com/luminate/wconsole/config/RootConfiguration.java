@@ -1,7 +1,7 @@
 package com.luminate.wconsole.config;
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.health.HealthCheckRegistry;
+//import com.codahale.metrics.MetricRegistry;
+//import com.codahale.metrics.health.HealthCheckRegistry;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Controller;
  */
 @Configuration
 @ImportResource({"classpath:META-INF/spring/root-context.xml"})
-@Import({com.luminate.wconsole.config.JettyConfiguration.class, com.luminate.wconsole.config.SpringSecurityConfig.class})
+@Import({com.luminate.wconsole.config.JettyConfiguration.class})
 @ComponentScan(basePackages = {"com.luminate.wconsole"},
         excludeFilters = {@ComponentScan.Filter(Controller.class),
                 @ComponentScan.Filter(Configuration.class)})
@@ -35,16 +35,16 @@ public class RootConfiguration {
     /**
      * The metrics registry.
      */
-    @Bean
+/*    @Bean
     public MetricRegistry metricsRegistry() {
         return new MetricRegistry();
     }
 
-    /**
+    *//**
      * The metrics health check registry.
-     */
+     *//*
     @Bean
     public HealthCheckRegistry metricsHealthCheckRegistry() {
         return new HealthCheckRegistry();
-    }
+    }*/
 }

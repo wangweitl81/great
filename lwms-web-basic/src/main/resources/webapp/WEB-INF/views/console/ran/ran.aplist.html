@@ -1,0 +1,53 @@
+<div class="main_section" id="ap_list">
+        <div id="select_group">
+          <div class="ap_list_selector_icon grey">
+            <span class="icon_text">1</span>
+          </div>
+          <div class="ap_list_selector_icon red">
+             <span class="icon_text">1</span>
+          </div>
+          <div class="ap_list_selector_icon yellow">
+             <span class="icon_text">1</span>
+          </div>
+          <div class="ap_list_selector_icon green">
+             <span class="icon_text">1</span>
+          </div>
+        </div>
+        <div id="table_header">
+          <div class="table_header_title" style="width:30px;">
+              <span class="table_header_column">&nbsp;</span>
+          </div>
+          <div class="table_header_title" style="width:358px;">
+              <span class="table_header_column">AP</span>
+          </div>
+          <div class="table_header_title" style="width:200px;">
+              <span class="table_header_column">IP</span>
+          </div>
+          <div class="table_header_title" style="width:200px;">
+                        <span class="table_header_column">REGION222</span>
+          </div>
+          <div class="table_header_title" style="width:180px;">
+              <span class="table_header_column">UPTIME</span>
+          </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">        
+          <div class="table_record" ng-repeat="ap in aplist">
+            <div class="table_record_section {{ap.status}}" style="width:30px;">
+            </div>
+            <div class="table_record_section" style="width:358px;">
+                <p>{{ap.name}}</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>{{ap.ip}}</p>
+            </div>
+            <div class="table_record_section" style="width:200px;">
+                <p>{{ap.region}}</p>
+            </div>  
+            <div class="table_record_section" style="width:180px;">
+                <p>{{ap.uptime}}</p>
+            </div> 
+          </div>   
+        </div>
+      </div>

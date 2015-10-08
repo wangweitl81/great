@@ -25,11 +25,6 @@
 
 package com.luminate.wconsole.config;
 
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.health.HealthCheckRegistry;
-import com.codahale.metrics.servlets.AdminServlet;
-import com.codahale.metrics.servlets.HealthCheckServlet;
-import com.codahale.metrics.servlets.MetricsServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -59,11 +54,11 @@ public class JettyConfiguration {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Autowired
-    private MetricRegistry metricRegistry;
+//    @Autowired
+//    private MetricRegistry metricRegistry;
 
-    @Autowired
-    private HealthCheckRegistry metricsHealthCheckRegistry;
+//    @Autowired
+//    private HealthCheckRegistry metricsHealthCheckRegistry;
 
    // @Value("${jetty.port:8080}")
   //  private int jettyPort;
@@ -72,13 +67,13 @@ public class JettyConfiguration {
 
         // Set Metric attributes on the handler for the metrics servlets, then
         // add the metrics servlet.
-        webAppContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
-                metricRegistry);
-        webAppContext.setAttribute(HealthCheckServlet.HEALTH_CHECK_REGISTRY,
-                metricsHealthCheckRegistry);
+//        webAppContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
+//                metricRegistry);
+//        webAppContext.setAttribute(HealthCheckServlet.HEALTH_CHECK_REGISTRY,
+//                metricsHealthCheckRegistry);
 
-        webAppContext.addServlet(new ServletHolder(new AdminServlet()),
-                "/metrics/*");
+//        webAppContext.addServlet(new ServletHolder(new AdminServlet()),
+//                "/metrics/*");
     }
 
     @Bean
@@ -105,7 +100,7 @@ public class JettyConfiguration {
         ctx.addEventListener(
                 new WebAppInitializerLoader(new WebApplicationInitializer[]{
                         new SpringWebAppInitializer(),
-                        new SpringSecurityWebAppInitializer()
+                        //new SpringSecurityWebAppInitializer()
                 }));
 
         return ctx;
@@ -131,8 +126,8 @@ public class JettyConfiguration {
 
         /* We can add servlets or here, or we could do it in the
          * SpringWebAppInitializer. */
-        addMetricsServlet(webAppContext());
-
+        //addMetricsServlet(webAppContext());
+        //webAppContext();
         return server;
     }
 }
