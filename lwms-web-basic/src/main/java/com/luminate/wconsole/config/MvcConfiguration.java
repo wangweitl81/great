@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -52,13 +53,30 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+    
+   @Bean
+    public InternalResourceViewResolver staticViewResolver() {
+    	InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+    	resolver.setViewNames(new String[]{"*.htm"});
+    	resolver.setPrefix("/WEB-INF/views/");
+    	resolver.setCache(false);
+    	return resolver;
+    }
 
+   @Bean
+   public InternalResourceViewResolver redirectViewResolver() {
+   	InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+   	resolver.setViewNames(new String[]{"redirect*"});
+//   	resolver.setPrefix("/WEB-INF/views/");
+   	return resolver;
+   }   
+   
     @Bean
     public ServletContextTemplateResolver thymeleafTemplateResolver() {
         ServletContextTemplateResolver resolver =
                 new ServletContextTemplateResolver();
         resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".html");
+//        resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML5");
         resolver.setCacheable(true);
         return resolver;
@@ -75,6 +93,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(thymeleafTemplateEngine());
+        resolver.setViewNames(new String[]{"*.html"});
         return resolver;
     }
 

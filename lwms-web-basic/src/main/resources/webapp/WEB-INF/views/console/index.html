@@ -117,7 +117,7 @@
   <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
   <!-- App Script -->
-  <script src="./scripts/console.js" th:src="@{/scripts/console.js}"></script>
+  <script src="./scripts/console.js" th:src="@{/scripts/app/console.js}"></script>
 <script src="./scripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
 <script src="./scripts/jquery-ui-1.8.10.custom.min.js" th:src="@{/scripts/jquery-ui-1.8.10.custom.min.js}"></script>
 <script src="./scripts/d3.min.js" th:src="@{/scripts/d3.min.js}"></script>
@@ -153,8 +153,8 @@
     });
 
     //handle the tab switcher
-    $("body").delegate(".tab_item p", "click", function(){
-      var parentNode = $(this).parent();
+    $("body").delegate(".tab_item a", "click", function(){
+      var parentNode = $(this).parent().parent();
       var tab_item_id = parentNode.attr("id").substr(4);
 
       //set the select status

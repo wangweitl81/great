@@ -1,5 +1,7 @@
 package com.luminate.wconsole.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +15,10 @@ public class ConsoleController {
      * Simple controller for "/" that returns a Thymeleaf view.
      */
     @RequestMapping(value = "/{context}/{concretePage}", method = RequestMethod.GET)
-    public String showConcreteConsolePage(@PathVariable String context, @PathVariable String concretePage, Model model) {
-    	return "console/"+context + "/" + concretePage;
+    public String showConcreteConsolePage(@PathVariable String context, @PathVariable String concretePage, Model model, HttpServletRequest request) {
+    	String uri = request.getRequestURI();
+    	int dotPos = uri.lastIndexOf(".");
+    	return "console/"+context + "/" + concretePage + uri.substring(dotPos);
     }
     
     /**
@@ -22,6 +26,6 @@ public class ConsoleController {
      */
     @RequestMapping(value = "/{concretePage}", method = RequestMethod.GET)
     public String showConsoleIndex(@PathVariable String concretePage, Model model) {
-    	return "console/" + concretePage;
+    	return "console/" + concretePage + ".html";
     }    
 }

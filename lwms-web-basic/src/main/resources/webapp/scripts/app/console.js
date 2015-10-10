@@ -59,51 +59,55 @@ function setupHotspots() {
   }
 
 angular.module('console', ["ui.router"])
-.config(function($stateProvider, $urlRouterProvider){
-      
+.factory('PathInterceptor', ['$location',function($location) {  
+    var path = {
+        request: function(config) {
+        	var path = $location.absUrl(); 
+            var pathArray = path.split('/');
+            var appContext = pathArray[3];
+        	
+        	config.url = "/" + appContext + config.url;
+  
+            return config;
+        },
+        response: function(response) {
+            return response;
+        }
+    };
+    return path;
+}])
+.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+		//$locationProvider.baseHref = "/hello/";
+	 $httpProvider.interceptors.push('PathInterceptor');
       // For any unmatched url, send to /populations
       $urlRouterProvider.otherwise('/ran_map')
       
       $stateProvider
         .state('ran', {
-            url: "/ran",
-            templateUrl: "ran/ran.html"
+            templateUrl: "/console/ran/ran.htm"
         })
         .state('ran.map', {
-            url: "/ranmap",
-            templateUrl: "ran/ran.map.html",
+            templateUrl: "/console/ran/ran.map.html",
             controller: 'RanMapCtrl'
         })
         .state('ran.aplist', {
-            url: "/ranaplist",
-            templateUrl: "ran/ran.aplist.html",
+            templateUrl: "/console/ran/ran.aplist.htm",
             controller: 'RanAPCtrl'
         })
         .state('ran.alarmlist', {
-            url: "/ranalarmlist",
-            templateUrl: "ran/ran.alarmlist.html",
+            templateUrl: "/console/ran/ran.alarmlist.htm",
             controller: 'RanAlarmCtrl'
         });
-//        .state('personnel.list.person', {
-//          url: '/:id',
-//          templateUrl: 'personnel/personnel.list.person.html',
-//          controller: function($scope, $stateParams){
-//            $scope.id = $stateParams.id
-//          }
-//        });
     })
     .controller('RanMapCtrl', ['$scope', function($scope){
-     // $scope.personnel = [{id:'1', name:"David"}, {id:'2', name:"Jon"}, {id:'3', name:"Tim"}, {id:'4', name:"Don"}];
     	setupHotspots();
     }])
     .controller('RanAPCtrl', ['$scope', '$http', function($scope, $http){
-      //$scope.subjects = ['100101', '100201', '100301'];
     	$http.get('/data/ap.json').success(function(data) {
     	    $scope.aplist = data.ap;
     	  });
     }])
     .controller('RanAlarmCtrl', ['$scope', '$http', function($scope, $http){
-      //$scope.visits = ["Enr", "Xab", "Conv"];
     	$http.get('/data/alarm.json').success(function(data) {
     	    $scope.alarmlist = data;
     	  });

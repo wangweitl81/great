@@ -20,6 +20,6 @@ public class RANController {
      */
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String showRadioAccessNetwork(Model model) {
-    	return "RAN";
+    	return "RAN.html";
     }
 }

@@ -44,7 +44,7 @@ public class HomeController {
         model.addAttribute("echoService", echoService);
         model.addAttribute("someItems", new String[] { "one", "two", "three" });
 
-        return "home";
+        return "home.html";
     }
 
 }

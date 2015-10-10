@@ -80,7 +80,7 @@ public class JettyConfiguration {
     public WebAppContext webAppContext() throws IOException {
 
         WebAppContext ctx = new WebAppContext();
-        ctx.setContextPath("/");
+        ctx.setContextPath("/hello");
         ctx.setWar(new ClassPathResource("webapp").getURI().toString());
 
         /* Disable directory listings if no index.html is found. */
