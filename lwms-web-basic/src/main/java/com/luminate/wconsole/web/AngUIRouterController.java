@@ -14,7 +14,7 @@ public class AngUIRouterController {
      */
     @RequestMapping(value = "/{context}/{concretePage}", method = RequestMethod.GET)
     public String showRadioAccessNetwork(@PathVariable String context, @PathVariable String concretePage, Model model) {
-    	return "sample/"+context + "/" + concretePage;
+    	return "sample/"+context + "/" + concretePage + ".html";
     }
     
     /**
@@ -22,6 +22,6 @@ public class AngUIRouterController {
      */
     @RequestMapping(value = "/{concretePage}", method = RequestMethod.GET)
     public String showRadioAccessNetwork(@PathVariable String concretePage, Model model) {
-    	return "sample/" + concretePage;
+    	return "sample/" + concretePage + ".html";
     }    
 }

@@ -102,7 +102,11 @@ public class JettyConfiguration {
                         new SpringWebAppInitializer(),
                         //new SpringSecurityWebAppInitializer()
                 }));
-
+        
+        //make jetty reload static resources automatically
+        ctx.setInitParameter("useFileMappedBuffer", "false");
+        //ctx.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false");
+        
         return ctx;
     }
 
