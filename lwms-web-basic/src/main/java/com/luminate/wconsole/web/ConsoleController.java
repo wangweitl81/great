@@ -15,7 +15,7 @@ public class ConsoleController {
      * Simple controller for "/" that returns a Thymeleaf view.
      */
     @RequestMapping(value = "/{context}/{concretePage}", method = RequestMethod.GET)
-    public String showConcreteConsolePage(@PathVariable String context, @PathVariable String concretePage, Model model, HttpServletRequest request) {
+    public String showConcreteConsolePage(@PathVariable("context") String context, @PathVariable("concretePage") String concretePage, Model model, HttpServletRequest request) {
     	String uri = request.getRequestURI();
     	int dotPos = uri.lastIndexOf(".");
     	return "console/"+context + "/" + concretePage + uri.substring(dotPos);
@@ -25,7 +25,7 @@ public class ConsoleController {
      * Simple controller for "/" that returns a Thymeleaf view.
      */
     @RequestMapping(value = "/{concretePage}", method = RequestMethod.GET)
-    public String showConsoleIndex(@PathVariable String concretePage, Model model) {
+    public String showConsoleIndex(@PathVariable("concretePage") String concretePage, Model model) {
     	return "console/" + concretePage + ".html";
     }    
 }

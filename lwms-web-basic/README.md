@@ -1,8 +1,7 @@
 Template - Embedded Jetty/SpringMVC/Thymeleaf Application
 =========================================================
 
-Consider using [Spring Boot](http://projects.spring.io/spring-boot/)
-for a simpler way of building a Spring MVC application with an
+A simple way of building a Spring MVC application with an
 embedded web server.
 
 ## Summary
@@ -19,34 +18,61 @@ compared to using JSP views with embedded Jetty.
 
 ## Running
 
-### With Maven
+### Build With Bazel
+### This project once was built with Maven, then it's transformed into a bazel project
+1) build 
+bazel build //:lwms-basic-app_deploy.jar
 
-    mvn exec:java -Dexec.mainClass=ca.unx.template.Main
+2) run
+java -jar ./bazel-bin/lwms-basic-app_deploy.jar -jettyPort 8081
 
-Then point your browser at http://localhost:8080.
+Then point your browser at http://localhost:8081/console/index
+The default jetty port is 8080.
 
-### Basic Jar
+3) js unit 
+http://localhost:8081/console/test
 
-The default package goal will build a jar in the target directory with
-dependency jars copied into target/lib.
+### Dependencies
+The external dependencies have two parts:
+1) The maven dependencies 
+These dependencies are calculated based on pom.xml, they are listed like below:
+# com.google.guava:guava:18.0
+maven_jar(
+	name="com/google/guava/guava",
+	artifact = "com.google.guava:guava:18.0",
+)
 
-    mvn package
-    java -jar target/jetty-springmvc-thymeleaf-template-0.0.1-SNAPSHOT.jar
+2) The grpc related dependencies
+The related jars are stored in the /lib directory, in WORKSPACE file the dependencies needs to be listed as below:
+#grpc_netty
+bind(
+  name = "grpc_netty",
+  actual = "//lib/grpc_netty:grpc_netty"
+)
 
-Then point your browser at http://localhost:8080.
+# The whole stack
+1) Server Side: 
+Jetty - for embedded servlet container
+Spring
+	springmvc - for path/controller mapper
+	spring beans/context/aop - for IOC, DI and aspect-oriented programming
+Thymeleaf - for server side templating
+Guava - for utility
+protobuf + grpc: for interaction with backend services
+jcommander - for command line arguments
+log4j + slf4j - for logging
+junit + hamcrest - Java unit test
 
-### Fat Jar
-
-If you would rather have a single jar that contains all the
-dependencies, use the 'fatjar' profile.
-
-    mvn -Pfatjar package
-    java -jar target/jetty-springmvc-thymeleaf-template-0.0.1-SNAPSHOT.jar
-
-Then point your browser at http://localhost:8080.
+2) The client Side:
+AngularJS - JS MVM framework
+JQuery - popular JS library 
+D3.js  - for data visualization
+Jasmine - for JS unit test
+Font Awesome - for icon 
+normalize.css - for boilerplate 
+bootstrap - popular css library
 
 ## Other Notes
-
 - To change the port that jetty will start on, set the jetty.port property
   to the desired port.
   
