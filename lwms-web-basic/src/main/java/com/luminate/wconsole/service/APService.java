@@ -16,13 +16,13 @@ public class APService {
 	private APRestService jsonService;
 	@Autowired
 	private APRpcService rpcService;
-	
+
 	public APList getApList(int dataType) {
-		if(dataType == WebAppEnv.DATA_REST) {
-			return jsonService.getApList();
-		} else {
-			return rpcService.getApList();
-		}
+	if (dataType == WebAppEnv.DATA_REST) {
+		return jsonService.getApList();
+	} else {
+		return rpcService.getApList();
 	}
-	
+	}
+
 }

@@ -50,7 +50,7 @@ bind(
   actual = "//lib/grpc_netty:grpc_netty"
 )
 
-# The whole stack
+# The technical stack
 1) Server Side: 
 Jetty - for embedded servlet container
 Spring
@@ -71,6 +71,10 @@ Jasmine - for JS unit test
 Font Awesome - for icon 
 normalize.css - for boilerplate 
 bootstrap - popular css library
+
+# The template engine
+We use thymeleaf template engine for server-side templating, those files ending with .html will be regarded as thymeleaf templates,
+the files ending with .htm will be regarded as static html pages, usually used as angularjs partial views.
 
 ## Other Notes
 - To change the port that jetty will start on, set the jetty.port property
