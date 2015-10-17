@@ -36,11 +36,11 @@ import java.util.logging.Handler;
 @Service
 public class EchoService {
 
-	final Logger logger = LoggerFactory.getLogger(getClass());
+  final Logger logger = LoggerFactory.getLogger(getClass());
 
-	private static EchoService instance = null;
+  private static EchoService instance = null;
 
-	public EchoService() {
+  public EchoService() {
 	/**
 	 * This is here to detect if we get instantiated 2x. While starting with
 	 * SpringMVC with Jetty embedded I found that I could get into a case where
@@ -48,15 +48,15 @@ public class EchoService {
 	 * of the web app context. The component scan filters should prevent this.
 	 */
 	if (instance != null) {
-		throw new RuntimeException("DummyServer has already been instantiated.");
+	  throw new RuntimeException("DummyServer has already been instantiated.");
 	}
 	instance = this;
 
 	logger.info("EchoService initialized.");
-	}
+  }
 
-	public String echo(String msg) {
+  public String echo(String msg) {
 	return new String(msg);
-	}
+  }
 
 }

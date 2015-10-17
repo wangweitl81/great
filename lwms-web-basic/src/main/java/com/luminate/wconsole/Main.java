@@ -22,74 +22,73 @@ import com.luminate.wconsole.config.WebAppEnv;
  * successfully loaded.
  */
 public class Main {
-	@Parameter(names = { "-jettyPort" }, description = "Jetty Port")
-	private int jettyPort;
+  @Parameter(names = { "-jettyPort" }, description = "Jetty Port")
+  private int jettyPort;
 
-	@Parameter(names = { "-dataType" }, description = "Data Type")
-	private String dataType;
+  @Parameter(names = { "-dataType" }, description = "Data Type")
+  private String dataType;
 
-	/**
-	 * Flag that will be set to true when the web application context
-	 * (SpringMVC) is refreshed.
-	 */
-	static boolean webApplicationContextInitialized = false;
+  /**
+   * Flag that will be set to true when the web application context (SpringMVC)
+   * is refreshed.
+   */
+  static boolean webApplicationContextInitialized = false;
 
-	public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
 
 	final Logger logger = LoggerFactory.getLogger("main");
 
 	Main main = new Main();
 	if (args.length > 0) {
-		new JCommander(main, args);
+	  new JCommander(main, args);
 
-		if (main.jettyPort > 0) {
+	  if (main.jettyPort > 0) {
 		WebAppEnv.setJettyPort(main.jettyPort);
-		}
-		if (!Strings.isNullOrEmpty(main.dataType)) {
+	  }
+	  if (!Strings.isNullOrEmpty(main.dataType)) {
 		if (main.dataType.equals("rest")) {
-			WebAppEnv.setDataType(WebAppEnv.DATA_REST);
+		  WebAppEnv.setDataType(WebAppEnv.DATA_REST);
 		} else if (main.dataType.equals("grpc")) {
-			WebAppEnv.setDataType(WebAppEnv.DATA_RPC);
+		  WebAppEnv.setDataType(WebAppEnv.DATA_RPC);
 		}
-		}
+	  }
 	}
 
 	logger.info("Jetty server has started at port: " + WebAppEnv.getJettyPort());
 
 	try {
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+	  AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 
-		/*
-		 * One problem with SpringMVC is it creates its own application context,
-		 * and so it can end up failing but our application will keep running.
-		 * 
-		 * To detect the case where the SpringMVC's web application context
-		 * fails we'll listen for ContextRefreshEvents and set a flag when we
-		 * see one.
-		 */
-		applicationContext.addApplicationListener(new ApplicationListener<ContextRefreshedEvent>() {
+	  /*
+	   * One problem with SpringMVC is it creates its own application context,
+	   * and so it can end up failing but our application will keep running.
+	   * 
+	   * To detect the case where the SpringMVC's web application context fails
+	   * we'll listen for ContextRefreshEvents and set a flag when we see one.
+	   */
+	  applicationContext.addApplicationListener(new ApplicationListener<ContextRefreshedEvent>() {
 		@Override
 		public void onApplicationEvent(ContextRefreshedEvent event) {
-			ApplicationContext ctx = event.getApplicationContext();
-			if (ctx instanceof AnnotationConfigWebApplicationContext) {
+		  ApplicationContext ctx = event.getApplicationContext();
+		  if (ctx instanceof AnnotationConfigWebApplicationContext) {
 			webApplicationContextInitialized = true;
-			}
+		  }
 		}
-		});
+	  });
 
-		applicationContext.registerShutdownHook();
-		applicationContext.register(RootConfiguration.class);
-		applicationContext.refresh();
+	  applicationContext.registerShutdownHook();
+	  applicationContext.register(RootConfiguration.class);
+	  applicationContext.refresh();
 
-		if (!webApplicationContextInitialized) {
+	  if (!webApplicationContextInitialized) {
 		logger.error("Web application context not initialized. Exiting.");
 		System.exit(1);
-		}
+	  }
 
-		logger.info("Running.");
+	  logger.info("Running.");
 	} catch (Exception e) {
-		logger.error("Error starting application", e);
-		System.exit(1);
+	  logger.error("Error starting application", e);
+	  System.exit(1);
 	}
-	}
+  }
 }

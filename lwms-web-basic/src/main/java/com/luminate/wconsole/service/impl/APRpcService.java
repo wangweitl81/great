@@ -11,8 +11,8 @@ import com.lwms.api.APListProtos.APList;
 @Service
 public class APRpcService implements APDataAPI {
 
-	@Override
-	public APList getApList() {
+  @Override
+  public APList getApList() {
 	APList.Builder aplist = APList.newBuilder();
 
 	AP.APStatus status = AP.APStatus.valueOf(AP.APStatus.green_VALUE);
@@ -36,6 +36,6 @@ public class APRpcService implements APDataAPI {
 
 	aplist.addAp(ap.build());
 	return aplist.build();
-	}
+  }
 
 }

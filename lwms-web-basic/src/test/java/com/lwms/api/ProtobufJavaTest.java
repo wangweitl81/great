@@ -7,8 +7,8 @@ import com.lwms.api.APListProtos.AP;
 
 public class ProtobufJavaTest {
 
-	@Test
-	public void testSimpleConversion() {
+  @Test
+  public void testSimpleConversion() {
 	// Message someProto = SomeProto.getDefaultInstance();
 	AP.Builder ap = AP.newBuilder();
 	AP.APStatus status = AP.APStatus.valueOf(AP.APStatus.green_VALUE);
@@ -21,6 +21,6 @@ public class ProtobufJavaTest {
 
 	String jsonFormat = JsonFormat.printToString(ap.build());
 	System.out.println(jsonFormat);
-	}
+  }
 
 }

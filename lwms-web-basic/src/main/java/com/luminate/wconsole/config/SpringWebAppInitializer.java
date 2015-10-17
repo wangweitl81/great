@@ -33,42 +33,42 @@ import javax.servlet.ServletContext;
 
 public class SpringWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	final Logger logger = LoggerFactory.getLogger(getClass());
+  final Logger logger = LoggerFactory.getLogger(getClass());
 
-	/**
-	 * See
-	 * {@link org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}
-	 * .
-	 */
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
+  /**
+   * See
+   * {@link org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}
+   * .
+   */
+  @Override
+  protected Class<?>[] getRootConfigClasses() {
 	return null;
-	}
+  }
 
-	/**
-	 * Set the application context for the Spring MVC web tier.
-	 *
-	 * @See {@link org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}
-	 */
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
+  /**
+   * Set the application context for the Spring MVC web tier.
+   *
+   * @See {@link org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}
+   */
+  @Override
+  protected Class<?>[] getServletConfigClasses() {
 	return new Class<?>[] { MvcConfiguration.class };
-	}
+  }
 
-	/**
-	 * Map the Spring MVC servlet as the root.
-	 *
-	 * @See {@link org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}
-	 */
-	@Override
-	protected String[] getServletMappings() {
+  /**
+   * Map the Spring MVC servlet as the root.
+   *
+   * @See {@link org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer}
+   */
+  @Override
+  protected String[] getServletMappings() {
 	return new String[] { "/" };
-	}
+  }
 
-	/**
-	 * Override to squelch a meaningless log message when embedded.
-	 */
-	@Override
-	protected void registerContextLoaderListener(ServletContext servletContext) {
-	}
+  /**
+   * Override to squelch a meaningless log message when embedded.
+   */
+  @Override
+  protected void registerContextLoaderListener(ServletContext servletContext) {
+  }
 }

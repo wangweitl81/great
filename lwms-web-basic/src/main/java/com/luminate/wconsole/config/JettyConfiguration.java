@@ -49,21 +49,21 @@ import java.io.IOException;
 @Configuration
 public class JettyConfiguration {
 
-	final Logger logger = LoggerFactory.getLogger(getClass());
+  final Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
-	private ApplicationContext applicationContext;
+  @Autowired
+  private ApplicationContext applicationContext;
 
-	// @Autowired
-	// private MetricRegistry metricRegistry;
+  // @Autowired
+  // private MetricRegistry metricRegistry;
 
-	// @Autowired
-	// private HealthCheckRegistry metricsHealthCheckRegistry;
+  // @Autowired
+  // private HealthCheckRegistry metricsHealthCheckRegistry;
 
-	// @Value("${jetty.port:8080}")
-	// private int jettyPort;
+  // @Value("${jetty.port:8080}")
+  // private int jettyPort;
 
-	private void addMetricsServlet(WebAppContext webAppContext) {
+  private void addMetricsServlet(WebAppContext webAppContext) {
 
 	// Set Metric attributes on the handler for the metrics servlets, then
 	// add the metrics servlet.
@@ -74,10 +74,10 @@ public class JettyConfiguration {
 
 	// webAppContext.addServlet(new ServletHolder(new AdminServlet()),
 	// "/metrics/*");
-	}
+  }
 
-	@Bean
-	public WebAppContext webAppContext() throws IOException {
+  @Bean
+  public WebAppContext webAppContext() throws IOException {
 
 	WebAppContext ctx = new WebAppContext();
 	ctx.setContextPath("/");
@@ -98,7 +98,7 @@ public class JettyConfiguration {
 
 	ctx.addEventListener(new ContextLoaderListener(webApplicationContext));
 	ctx.addEventListener(
-		new WebAppInitializerLoader(new WebApplicationInitializer[] { new SpringWebAppInitializer(),
+	    new WebAppInitializerLoader(new WebApplicationInitializer[] { new SpringWebAppInitializer(),
 		// new SpringSecurityWebAppInitializer()
 	}));
 
@@ -108,15 +108,15 @@ public class JettyConfiguration {
 	// "false");
 
 	return ctx;
-	}
+  }
 
-	/**
-	 * Jetty Server bean.
-	 * <p/>
-	 * Instantiate the Jetty server.
-	 */
-	@Bean(initMethod = "start", destroyMethod = "stop")
-	public Server jettyServer() throws Exception {
+  /**
+   * Jetty Server bean.
+   * <p/>
+   * Instantiate the Jetty server.
+   */
+  @Bean(initMethod = "start", destroyMethod = "stop")
+  public Server jettyServer() throws Exception {
 
 	/* Create the server. */
 	Server server = new Server();
@@ -135,5 +135,5 @@ public class JettyConfiguration {
 	// addMetricsServlet(webAppContext());
 	// webAppContext();
 	return server;
-	}
+  }
 }

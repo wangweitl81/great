@@ -8,24 +8,24 @@ import javax.servlet.ServletException;
 
 public class WebAppInitializerLoader implements ServletContextListener {
 
-	private WebApplicationInitializer initializers[];
+  private WebApplicationInitializer initializers[];
 
-	public WebAppInitializerLoader(WebApplicationInitializer initializers[]) {
+  public WebAppInitializerLoader(WebApplicationInitializer initializers[]) {
 	this.initializers = initializers;
-	}
+  }
 
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
+  @Override
+  public void contextInitialized(ServletContextEvent servletContextEvent) {
 	for (WebApplicationInitializer initializer : initializers) {
-		try {
+	  try {
 		initializer.onStartup(servletContextEvent.getServletContext());
-		} catch (ServletException e) {
+	  } catch (ServletException e) {
 		throw new RuntimeException(e);
-		}
+	  }
 	}
-	}
+  }
 
-	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-	}
+  @Override
+  public void contextDestroyed(ServletContextEvent servletContextEvent) {
+  }
 }

@@ -12,17 +12,17 @@ import com.lwms.api.APListProtos.APList;
 
 @Service
 public class APService {
-	@Autowired
-	private APRestService jsonService;
-	@Autowired
-	private APRpcService rpcService;
+  @Autowired
+  private APRestService jsonService;
+  @Autowired
+  private APRpcService rpcService;
 
-	public APList getApList(int dataType) {
+  public APList getApList(int dataType) {
 	if (dataType == WebAppEnv.DATA_REST) {
-		return jsonService.getApList();
+	  return jsonService.getApList();
 	} else {
-		return rpcService.getApList();
+	  return rpcService.getApList();
 	}
-	}
+  }
 
 }

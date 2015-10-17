@@ -20,28 +20,28 @@ import org.springframework.stereotype.Controller;
 @ImportResource({ "classpath:META-INF/spring/root-context.xml" })
 @Import({ com.luminate.wconsole.config.JettyConfiguration.class })
 @ComponentScan(basePackages = { "com.luminate.wconsole" }, excludeFilters = {
-	@ComponentScan.Filter(Controller.class), @ComponentScan.Filter(Configuration.class) })
+    @ComponentScan.Filter(Controller.class), @ComponentScan.Filter(Configuration.class) })
 public class RootConfiguration {
 
-	/**
-	 * Allows access to environment properties. eg @Value("${jetty.port}).
-	 */
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+  /**
+   * Allows access to environment properties. eg @Value("${jetty.port}).
+   */
+  @Bean
+  public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
 	return new PropertySourcesPlaceholderConfigurer();
-	}
+  }
 
-	/**
-	 * The metrics registry.
-	 */
-	/*
-	 * @Bean public MetricRegistry metricsRegistry() { return new
-	 * MetricRegistry(); }
-	 * 
-	 *//**
-		 * The metrics health check registry.
-		 *//*
-		 * @Bean public HealthCheckRegistry metricsHealthCheckRegistry() {
-		 * return new HealthCheckRegistry(); }
-		 */
+  /**
+   * The metrics registry.
+   */
+  /*
+   * @Bean public MetricRegistry metricsRegistry() { return new
+   * MetricRegistry(); }
+   * 
+   *//**
+     * The metrics health check registry.
+     *//*
+       * @Bean public HealthCheckRegistry metricsHealthCheckRegistry() { return
+       * new HealthCheckRegistry(); }
+       */
 }
