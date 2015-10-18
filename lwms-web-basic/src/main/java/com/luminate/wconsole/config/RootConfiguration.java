@@ -23,25 +23,25 @@ import org.springframework.stereotype.Controller;
     @ComponentScan.Filter(Controller.class), @ComponentScan.Filter(Configuration.class) })
 public class RootConfiguration {
 
-  /**
-   * Allows access to environment properties. eg @Value("${jetty.port}).
-   */
-  @Bean
-  public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
-	return new PropertySourcesPlaceholderConfigurer();
-  }
+	/**
+	 * Allows access to environment properties. eg @Value("${jetty.port}).
+	 */
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 
-  /**
-   * The metrics registry.
-   */
-  /*
-   * @Bean public MetricRegistry metricsRegistry() { return new
-   * MetricRegistry(); }
-   * 
-   *//**
-     * The metrics health check registry.
-     *//*
-       * @Bean public HealthCheckRegistry metricsHealthCheckRegistry() { return
-       * new HealthCheckRegistry(); }
-       */
+	/**
+	 * The metrics registry.
+	 */
+	/*
+	 * @Bean public MetricRegistry metricsRegistry() { return new
+	 * MetricRegistry(); }
+	 * 
+	 *//**
+	   * The metrics health check registry.
+	   *//*
+	     * @Bean public HealthCheckRegistry metricsHealthCheckRegistry() { return
+	     * new HealthCheckRegistry(); }
+	     */
 }

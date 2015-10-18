@@ -17,25 +17,25 @@ import java.util.Locale;
 @Controller
 public class HomeController {
 
-  private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-  /**
-   * Simple controller for "/" that returns a Thymeleaf view.
-   */
-  @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String home(Locale locale, Model model) {
-	logger.info("Welcome home! the client locale is " + locale.toString());
+	/**
+	 * Simple controller for "/" that returns a Thymeleaf view.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! the client locale is " + locale.toString());
 
-	Date date = new Date();
-	DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
-	    locale);
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
+		    locale);
 
-	String formattedDate = dateFormat.format(date);
+		String formattedDate = dateFormat.format(date);
 
-	model.addAttribute("serverTime", formattedDate);
-	model.addAttribute("someItems", new String[] { "one", "two", "three" });
+		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("someItems", new String[] { "one", "two", "three" });
 
-	return "home.html";
-  }
+		return "home.html";
+	}
 
 }
