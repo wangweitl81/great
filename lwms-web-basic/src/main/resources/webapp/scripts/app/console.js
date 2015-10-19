@@ -76,25 +76,36 @@ angular.module('console', ["ui.router"])
     };
     return path;
 }])
+.factory('apApi', function($http){
+  return {
+    getApList: function(){
+      return $http.get('/data/ap.json');
+    }
+  }
+})
 .config(function($stateProvider, $urlRouterProvider, $httpProvider){
 		//$locationProvider.baseHref = "/hello/";
-	 $httpProvider.interceptors.push('PathInterceptor');
+	// $httpProvider.interceptors.push('PathInterceptor');
       // For any unmatched url, send to /populations
-      $urlRouterProvider.otherwise('/ran_map')
+      $urlRouterProvider.otherwise('/ran/ran_map')
       
       $stateProvider
         .state('ran', {
+        	url: '/ran',
             templateUrl: "/console/ran/ran.htm"
         })
         .state('ran.map', {
+        	url: '/ran_map',
             templateUrl: "/console/ran/ran.map.html",
             controller: 'RanMapCtrl'
         })
         .state('ran.aplist', {
+        	url: '/ran_aplist',
             templateUrl: "/console/ran/ran.aplist.htm",
             controller: 'RanAPCtrl'
         })
         .state('ran.alarmlist', {
+        	url: '/ran_alarmlist',
             templateUrl: "/console/ran/ran.alarmlist.htm",
             controller: 'RanAlarmCtrl'
         });
@@ -102,11 +113,19 @@ angular.module('console', ["ui.router"])
     .controller('RanMapCtrl', ['$scope', function($scope){
     	setupHotspots();
     }])
-    .controller('RanAPCtrl', ['$scope', '$http', function($scope, $http){
+    .controller('RanAPCtrl', function($scope, apApi) {
+  $scope.name = 'World';
+  
+  apApi.getApList().success(function(data){
+    $scope.aplist = data.ap;
+  })
+}
+      /*['$scope', '$http', function($scope, $http){
     	$http.get('/data/ap.json').success(function(data) {
     	    $scope.aplist = data.ap;
     	  });
-    }])
+    }]*/
+    )
     .controller('RanAlarmCtrl', ['$scope', '$http', function($scope, $http){
     	$http.get('/data/alarm.json').success(function(data) {
     	    $scope.alarmlist = data;

@@ -6,6 +6,6 @@ import com.lwms.api.APListProtos.AP;
 import com.lwms.api.APListProtos.APList;
 
 public interface APDataAPI {
-	
+
 	APList getApList();
 }

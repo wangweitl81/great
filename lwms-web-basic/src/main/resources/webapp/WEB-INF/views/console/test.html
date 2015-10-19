@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" ng-app="console">
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Test Page</title>
+    <link data-require="jasmine@2.0.0rc2" data-semver="2.0.0rc2" rel="stylesheet" href="http://cdn.jsdelivr.net/jasmine/2.0.0rc2/jasmine.css" />
+    <script data-require="jasmine@2.0.0rc2" data-semver="2.0.0rc2" src="http://cdn.jsdelivr.net/jasmine/2.0.0rc2/jasmine.js"></script>
+    <script data-require="jasmine@2.0.0rc2" data-semver="2.0.0rc2" src="http://cdn.jsdelivr.net/jasmine/2.0.0rc2/jasmine-html.js"></script>
+    <script data-require="jasmine@2.0.0rc2" data-semver="2.0.0rc2" src="http://cdn.jsdelivr.net/jasmine/2.0.0rc2/boot.js"></script>
+    <script data-require="angular.js@1.2.x" src="https://code.angularjs.org/1.2.16/angular.js" data-semver="1.2.16"></script>
+     <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+    <script src="https://code.angularjs.org/1.2.16/angular-mocks.js"></script>
+      <script src="./scripts/console.js" th:src="@{/scripts/app/console.js}"></script>
+       <script src="./scripts/app.spec.js" th:src="@{/scripts/app/app.spec.js}"></script>
+  </head>
+
+  <body>
+  </body>
+
+</html>

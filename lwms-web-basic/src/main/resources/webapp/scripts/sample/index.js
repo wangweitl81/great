@@ -1,0 +1,1 @@
+angular.module("CombineModule", ["myapp_personnel", "myapp_population"]);

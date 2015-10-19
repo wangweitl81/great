@@ -29,72 +29,79 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(useDefaultFilters = false, basePackages = {"com.luminate.wconsole"},
-        includeFilters = {@ComponentScan.Filter(Controller.class)})
+@ComponentScan(useDefaultFilters = false, basePackages = {
+    "com.luminate.wconsole" }, includeFilters = { @ComponentScan.Filter(Controller.class) })
 @ImportResource("classpath:META-INF/spring/servlet-context.xml")
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
-    final Logger logger = LoggerFactory.getLogger(getClass());
+	final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
 
-        /* Mapping to the login view. */
-        registry.addViewController("/login").setViewName("login");
+		/* Mapping to the login view. */
+		registry.addViewController("/login").setViewName("login");
 
-    }
+	}
 
-    /**
-     * Allow the default servlet to serve static files from the webapp root.
-     * @param configurer
-     */
-    @Override
-    public void configureDefaultServletHandling(
-            DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-    
-   @Bean
-    public InternalResourceViewResolver staticViewResolver() {
-    	InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-    	resolver.setViewNames(new String[]{"*.htm"});
-    	resolver.setPrefix("/WEB-INF/views/");
-    	resolver.setCache(false);
-    	return resolver;
-    }
+	/**
+	 * Allow the default servlet to serve static files from the webapp root.
+	 * 
+	 * @param configurer
+	 */
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+		configurer.enable();
+	}
 
-   @Bean
-   public InternalResourceViewResolver redirectViewResolver() {
-   	InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-   	resolver.setViewNames(new String[]{"redirect*"});
-//   	resolver.setPrefix("/WEB-INF/views/");
-   	return resolver;
-   }   
-   
-    @Bean
-    public ServletContextTemplateResolver thymeleafTemplateResolver() {
-        ServletContextTemplateResolver resolver =
-                new ServletContextTemplateResolver();
-        resolver.setPrefix("/WEB-INF/views/");
-//        resolver.setSuffix(".html");
-        resolver.setTemplateMode("HTML5");
-        resolver.setCacheable(true);
-        return resolver;
-    }
+	/**
+	 * static files ends with .htm stands for static html pages
+	 * 
+	 * @return
+	 */
+	@Bean
+	public InternalResourceViewResolver staticViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setViewNames(new String[] { "*.htm" });
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setCache(false);
+		return resolver;
+	}
 
-    @Bean
-    public SpringTemplateEngine thymeleafTemplateEngine() {
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.setTemplateResolver(thymeleafTemplateResolver());
-        return engine;
-    }
+	@Bean
+	public InternalResourceViewResolver redirectViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setViewNames(new String[] { "redirect*" });
+		return resolver;
+	}
 
-    @Bean
-    public ThymeleafViewResolver thymeleafViewResolver() {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine(thymeleafTemplateEngine());
-        resolver.setViewNames(new String[]{"*.html"});
-        return resolver;
-    }
+	@Bean
+	public ServletContextTemplateResolver thymeleafTemplateResolver() {
+		ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
+		resolver.setPrefix("/WEB-INF/views/");
+		resolver.setTemplateMode("HTML5");
+		resolver.setCacheable(true);
+		return resolver;
+	}
+
+	@Bean
+	public SpringTemplateEngine thymeleafTemplateEngine() {
+		SpringTemplateEngine engine = new SpringTemplateEngine();
+		engine.setTemplateResolver(thymeleafTemplateResolver());
+		return engine;
+	}
+
+	/**
+	 * static files ends with .html stands for thymeleaf templates
+	 * 
+	 * @return
+	 */
+	@Bean
+	public ThymeleafViewResolver thymeleafViewResolver() {
+		ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+		resolver.setTemplateEngine(thymeleafTemplateEngine());
+		resolver.setViewNames(new String[] { "*.html" });
+		return resolver;
+	}
 
 }

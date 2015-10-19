@@ -49,6 +49,7 @@ import java.io.IOException;
 @Configuration
 public class JettyConfiguration {
 
+<<<<<<< HEAD
     final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -129,4 +130,93 @@ public class JettyConfiguration {
         //webAppContext();
         return server;
     }
+=======
+	final Logger logger = LoggerFactory.getLogger(getClass());
+
+	@Autowired
+	private ApplicationContext applicationContext;
+
+	// @Autowired
+	// private MetricRegistry metricRegistry;
+
+	// @Autowired
+	// private HealthCheckRegistry metricsHealthCheckRegistry;
+
+	// @Value("${jetty.port:8080}")
+	// private int jettyPort;
+
+	private void addMetricsServlet(WebAppContext webAppContext) {
+
+		// Set Metric attributes on the handler for the metrics servlets, then
+		// add the metrics servlet.
+		// webAppContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
+		// metricRegistry);
+		// webAppContext.setAttribute(HealthCheckServlet.HEALTH_CHECK_REGISTRY,
+		// metricsHealthCheckRegistry);
+
+		// webAppContext.addServlet(new ServletHolder(new AdminServlet()),
+		// "/metrics/*");
+	}
+
+	@Bean
+	public WebAppContext webAppContext() throws IOException {
+
+		WebAppContext ctx = new WebAppContext();
+		ctx.setContextPath("/");
+		ctx.setWar(new ClassPathResource("webapp").getURI().toString());
+
+		/* Disable directory listings if no index.html is found. */
+		ctx.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
+
+		/*
+		 * Create the root web application context and set it as a servlet attribute
+		 * so the dispatcher servlet can find it.
+		 */
+		GenericWebApplicationContext webApplicationContext = new GenericWebApplicationContext();
+		webApplicationContext.setParent(applicationContext);
+		webApplicationContext.refresh();
+
+		ctx.setParentLoaderPriority(true);
+
+		ctx.addEventListener(new ContextLoaderListener(webApplicationContext));
+		ctx.addEventListener(
+		    new WebAppInitializerLoader(new WebApplicationInitializer[] { new SpringWebAppInitializer(),
+				// new SpringSecurityWebAppInitializer()
+		}));
+
+		// make jetty reload static resources automatically
+		ctx.setInitParameter("useFileMappedBuffer", "false");
+		// ctx.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer",
+		// "false");
+
+		return ctx;
+	}
+
+	/**
+	 * Jetty Server bean.
+	 * <p/>
+	 * Instantiate the Jetty server.
+	 */
+	@Bean(initMethod = "start", destroyMethod = "stop")
+	public Server jettyServer() throws Exception {
+
+		/* Create the server. */
+		Server server = new Server();
+
+		/* Create a basic connector. */
+		ServerConnector httpConnector = new ServerConnector(server);
+		httpConnector.setPort(WebAppEnv.getJettyPort());
+		server.addConnector(httpConnector);
+
+		server.setHandler(webAppContext());
+
+		/*
+		 * We can add servlets or here, or we could do it in the
+		 * SpringWebAppInitializer.
+		 */
+		// addMetricsServlet(webAppContext());
+		// webAppContext();
+		return server;
+	}
+>>>>>>> adac634ecf51db4fe52c6297db18b27e896f5f8f
 }

@@ -9,19 +9,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/angular")
 public class AngUIRouterController {
-    /**
-     * Simple controller for "/" that returns a Thymeleaf view.
-     */
-    @RequestMapping(value = "/{context}/{concretePage}", method = RequestMethod.GET)
-    public String showRadioAccessNetwork(@PathVariable String context, @PathVariable String concretePage, Model model) {
-    	return "sample/"+context + "/" + concretePage;
-    }
-    
-    /**
-     * Simple controller for "/" that returns a Thymeleaf view.
-     */
-    @RequestMapping(value = "/{concretePage}", method = RequestMethod.GET)
-    public String showRadioAccessNetwork(@PathVariable String concretePage, Model model) {
-    	return "sample/" + concretePage;
-    }    
+	/**
+	 * Simple controller for "/" that returns a Thymeleaf view.
+	 */
+	@RequestMapping(value = "/{context}/{concretePage}", method = RequestMethod.GET)
+	public String showRadioAccessNetwork(@PathVariable String context,
+	    @PathVariable String concretePage, Model model) {
+		return "sample/" + context + "/" + concretePage + ".html";
+	}
+
+	/**
+	 * Simple controller for "/" that returns a Thymeleaf view.
+	 */
+	@RequestMapping(value = "/{concretePage}", method = RequestMethod.GET)
+	public String showRadioAccessNetwork(@PathVariable String concretePage, Model model) {
+		return "sample/" + concretePage + ".html";
+	}
 }
