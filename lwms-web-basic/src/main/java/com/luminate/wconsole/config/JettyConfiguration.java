@@ -82,7 +82,6 @@ public class JettyConfiguration {
         WebAppContext ctx = new WebAppContext();
         ctx.setContextPath("/hello");
         ctx.setWar(new ClassPathResource("webapp").getURI().toString());
-
         /* Disable directory listings if no index.html is found. */
         ctx.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed",
                 "false");
