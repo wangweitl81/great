@@ -49,91 +49,76 @@ import java.io.IOException;
 @Configuration
 public class JettyConfiguration {
 
-	final Logger logger = LoggerFactory.getLogger(getClass());
+  final Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
-	private ApplicationContext applicationContext;
+  @Autowired
+  private ApplicationContext applicationContext;
 
-	// @Autowired
-	// private MetricRegistry metricRegistry;
+  // @Autowired
+  // private MetricRegistry metricRegistry;
 
-	// @Autowired
-	// private HealthCheckRegistry metricsHealthCheckRegistry;
+  // @Autowired
+  // private HealthCheckRegistry metricsHealthCheckRegistry;
 
-	// @Value("${jetty.port:8080}")
-	// private int jettyPort;
+  // @Value("${jetty.port:8080}")
+  // private int jettyPort;
 
-	private void addMetricsServlet(WebAppContext webAppContext) {
 
-		// Set Metric attributes on the handler for the metrics servlets, then
-		// add the metrics servlet.
-		// webAppContext.setAttribute(MetricsServlet.METRICS_REGISTRY,
-		// metricRegistry);
-		// webAppContext.setAttribute(HealthCheckServlet.HEALTH_CHECK_REGISTRY,
-		// metricsHealthCheckRegistry);
+  public WebAppContext webAppContext() throws IOException {
 
-		// webAppContext.addServlet(new ServletHolder(new AdminServlet()),
-		// "/metrics/*");
-	}
+    WebAppContext ctx = new WebAppContext();
+    ctx.setContextPath("/");
+    ctx.setWar(new ClassPathResource("webapp").getURI().toString());
 
-	@Bean
-	public WebAppContext webAppContext() throws IOException {
+    /* Disable directory listings if no index.html is found. */
+    ctx.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
 
-		WebAppContext ctx = new WebAppContext();
-		ctx.setContextPath("/");
-		ctx.setWar(new ClassPathResource("webapp").getURI().toString());
+    /*
+     * Create the root web application context and set it as a servlet attribute
+     * so the dispatcher servlet can find it.
+     */
+    GenericWebApplicationContext webApplicationContext = new GenericWebApplicationContext();
+    webApplicationContext.setParent(applicationContext);
+    webApplicationContext.refresh();
 
-		/* Disable directory listings if no index.html is found. */
-		ctx.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
+    ctx.setParentLoaderPriority(true);
 
-		/*
-		 * Create the root web application context and set it as a servlet attribute
-		 * so the dispatcher servlet can find it.
-		 */
-		GenericWebApplicationContext webApplicationContext = new GenericWebApplicationContext();
-		webApplicationContext.setParent(applicationContext);
-		webApplicationContext.refresh();
+    ctx.addEventListener(new ContextLoaderListener(webApplicationContext));
+    ctx.addEventListener(
+        new WebAppInitializerLoader(new WebApplicationInitializer[] { new SpringWebAppInitializer(),
+        // new SpringSecurityWebAppInitializer()
+    }));
 
-		ctx.setParentLoaderPriority(true);
+    // make jetty reload static resources automatically
+    ctx.setInitParameter("useFileMappedBuffer", "false");
+    // ctx.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer",
+    // "false");
 
-		ctx.addEventListener(new ContextLoaderListener(webApplicationContext));
-		ctx.addEventListener(
-		    new WebAppInitializerLoader(new WebApplicationInitializer[] { new SpringWebAppInitializer(),
-				// new SpringSecurityWebAppInitializer()
-		}));
+    return ctx;
+  }
 
-		// make jetty reload static resources automatically
-		ctx.setInitParameter("useFileMappedBuffer", "false");
-		// ctx.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer",
-		// "false");
+  /**
+   * Jetty Server bean.
+   * <p/>
+   * Instantiate the Jetty server.
+   */
+  @Bean(initMethod = "start", destroyMethod = "stop")
+  public Server jettyServer() throws Exception {
 
-		return ctx;
-	}
+    /* Create the server. */
+    Server server = new Server();
 
-	/**
-	 * Jetty Server bean.
-	 * <p/>
-	 * Instantiate the Jetty server.
-	 */
-	@Bean(initMethod = "start", destroyMethod = "stop")
-	public Server jettyServer() throws Exception {
+    /* Create a basic connector. */
+    ServerConnector httpConnector = new ServerConnector(server);
+    httpConnector.setPort(WebAppEnv.getJettyPort());
+    server.addConnector(httpConnector);
 
-		/* Create the server. */
-		Server server = new Server();
+    server.setHandler(webAppContext());
 
-		/* Create a basic connector. */
-		ServerConnector httpConnector = new ServerConnector(server);
-		httpConnector.setPort(WebAppEnv.getJettyPort());
-		server.addConnector(httpConnector);
-
-		server.setHandler(webAppContext());
-
-		/*
-		 * We can add servlets or here, or we could do it in the
-		 * SpringWebAppInitializer.
-		 */
-		// addMetricsServlet(webAppContext());
-		// webAppContext();
-		return server;
-	}
+    /*
+     * We can add servlets or here, or we could do it in the
+     * SpringWebAppInitializer.
+     */
+    return server;
+  }
 }

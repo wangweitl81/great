@@ -11,31 +11,31 @@ import com.lwms.api.APListProtos.APList;
 @Service
 public class APRestService implements APDataAPI {
 
-	@Override
-	public APList getApList() {
-		APList.Builder aplist = APList.newBuilder();
+  @Override
+  public APList getApList() {
+    APList.Builder aplist = APList.newBuilder();
 
-		AP.APStatus status = AP.APStatus.valueOf(AP.APStatus.green_VALUE);
-		AP.Builder ap = AP.newBuilder();
+    AP.APStatus status = AP.APStatus.valueOf(AP.APStatus.green_VALUE);
+    AP.Builder ap = AP.newBuilder();
 
-		ap.setId(1);
-		ap.setIp("172.32.2.3");
-		ap.setName("Cupertino-A001");
-		ap.setRegion("California");
-		ap.setUptime("10h20m");
-		ap.setStatus(status);
+    ap.setId(1);
+    ap.setIp("172.32.2.3");
+    ap.setName("Cupertino-A001");
+    ap.setRegion("California");
+    ap.setUptime("10h20m");
+    ap.setStatus(status);
 
-		aplist.addAp(ap.build());
+    aplist.addAp(ap.build());
 
-		ap.setId(2);
-		ap.setIp("172.32.2.4");
-		ap.setName("Cupertino-A002");
-		ap.setRegion("California");
-		ap.setUptime("10h20m");
-		ap.setStatus(status);
+    ap.setId(2);
+    ap.setIp("172.32.2.4");
+    ap.setName("Cupertino-A002");
+    ap.setRegion("California");
+    ap.setUptime("10h20m");
+    ap.setStatus(status);
 
-		aplist.addAp(ap.build());
-		return aplist.build();
-	}
+    aplist.addAp(ap.build());
+    return aplist.build();
+  }
 
 }

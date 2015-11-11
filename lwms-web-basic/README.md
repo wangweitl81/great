@@ -54,8 +54,8 @@ bind(
 1) Server Side: 
 Jetty - for embedded servlet container
 Spring
-	springmvc - for path/controller mapper
-	spring beans/context/aop - for IOC, DI and aspect-oriented programming
+springmvc - for path/controller mapper
+spring beans/context/aop - for IOC, DI and aspect-oriented programming
 Thymeleaf - for server side templating
 Guava - for utility
 protobuf + grpc: for interaction with backend services

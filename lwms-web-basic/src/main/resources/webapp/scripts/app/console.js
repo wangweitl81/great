@@ -57,7 +57,7 @@ function setupHotspots() {
           .text(function(d) { return '45'; });
       }
   }
-
+/*
 angular.module('console', ["ui.router"])
 .factory('PathInterceptor', ['$location',function($location) {  
     var path = {
@@ -82,8 +82,9 @@ angular.module('console', ["ui.router"])
       return $http.get('/data/ap.json');
     }
   }
-})
-.config(function($stateProvider, $urlRouterProvider, $httpProvider){
+})*/
+/*
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider){
 		//$locationProvider.baseHref = "/hello/";
 	// $httpProvider.interceptors.push('PathInterceptor');
       // For any unmatched url, send to /populations
@@ -109,7 +110,9 @@ angular.module('console', ["ui.router"])
             templateUrl: "/console/ran/ran.alarmlist.htm",
             controller: 'RanAlarmCtrl'
         });
-    })
+      
+     // $locationProvider.html5Mode(true);
+    })*/
     .controller('RanMapCtrl', ['$scope', function($scope){
     	setupHotspots();
     }])
@@ -119,15 +122,15 @@ angular.module('console', ["ui.router"])
   apApi.getApList().success(function(data){
     $scope.aplist = data.ap;
   })
-}
-      /*['$scope', '$http', function($scope, $http){
-    	$http.get('/data/ap.json').success(function(data) {
-    	    $scope.aplist = data.ap;
-    	  });
-    }]*/
-    )
+})
     .controller('RanAlarmCtrl', ['$scope', '$http', function($scope, $http){
     	$http.get('/data/alarm.json').success(function(data) {
     	    $scope.alarmlist = data;
     	  });
-    }]);
+    }])
+     /*['$scope', '$http', function($scope, $http){
+    	$http.get('/data/ap.json').success(function(data) {
+    	    $scope.aplist = data.ap;
+    	  });
+    }]*/
+    ;

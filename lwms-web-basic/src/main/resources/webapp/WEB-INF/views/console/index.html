@@ -26,14 +26,14 @@
       }
     </style>	
 </head>
-<body>
+<body ng-controller="globalCtrl">
 
 <!-- NAVIGATION (Dynamic Panel) -->
       <div id="navigator" class="fixed" data-label="NAVIGATION" style="z-index: 1018;">
         <div id="icon_navigator" data-label="VERSION A">
           <div id="navigator_content" class="panel_content">
             <!-- PNAV - RAN (Shape) -->
-            <div id="RAN" class="navigator_item" data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
+            <div id="RAN" class="navigator_item" ng-mouseover="enterNav()"  data-label="PNAV - RAN" selectiongroup="u637NAVIGATION" style="cursor: pointer;">
              	<div class="navigator_item_icon">
              		<a ui-sref="ran"><i class="fa fa-signal"></i></a>
              	</div>
@@ -54,7 +54,7 @@
             </div>
         </div>
        </div>
-       <div id="text_navigator" style="visibility: hidden; z-index: 1016;">
+       <div id="text_navigator" ng-show="showNav || false" ng-mouseleave="leaveNav()" style="z-index: 1016;">
        	<div id="text_navigator_content">
             <!-- PNAV - LABELS (Dynamic Panel) -->
       			<!-- PNAV/LABEL - RAN (Shape) -->
@@ -117,75 +117,12 @@
   <script src="//angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 
   <!-- App Script -->
-  <script src="./scripts/console.js" th:src="@{/scripts/app/console.js}"></script>
+  <script src="./scripts/app.js" th:src="@{/scripts/app.js}"></script>
+  <script src="./scripts/controllers/globalCtrl.js" th:src="@{/scripts/controllers/globalCtrl.js}"></script>
+    <script src="./scripts/controllers/ranCtrl.js" th:src="@{/scripts/controllers/ranCtrl.js}"></script>
 <script src="./scripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
-<script src="./scripts/jquery-ui-1.8.10.custom.min.js" th:src="@{/scripts/jquery-ui-1.8.10.custom.min.js}"></script>
 <script src="./scripts/d3.min.js" th:src="@{/scripts/d3.min.js}"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="./scripts/bootstrap.min.js" th:src="@{/scripts/bootstrap.min.js}"></script>
-<script src="./scripts/mustache.js" th:src="@{/scripts/mustache.js}"></script>
-
-<script type="text/javascript">
-
-	$(function() {
-		console.log('hello');
-
-    //handle the navigator
-    $(".fa").bind("mouseover", function() {
-      $("#text_navigator").css("visibility", "visible");
-      console.log("show the element");
-    });
-    $("#text_navigator").bind("mouseout", function(){
-      $("#text_navigator").css("visibility", "hidden");
-      console.log("hide the element");
-    });
-
-    $("#text_navigator .text_navigator_item_text").bind("mouseover", function(){
-        $(this).css("color", "#0000aa");
-    }).bind("mouseout", function() {
-        $(this).css("color", "white");
-    });
-
-    setupHotspots();
-
-    $("#search_icon").bind("click", function() {
-      $("#search_bar").addClass("highlight");
-    });
-
-    //handle the tab switcher
-    $("body").delegate(".tab_item a", "click", function(){
-      var parentNode = $(this).parent().parent();
-      var tab_item_id = parentNode.attr("id").substr(4);
-
-      //set the select status
-      $(".tab_item").removeClass("selected");
-      parentNode.addClass("selected");
-
-     /*  console.log("span clicked" + tab_item_id);
-      $(".main_section").css("display", "none");
-      $("#"+tab_item_id).css("display", "block"); */
-
-      //now load the data
-     // loadAndRender(tab_item_id);
-    });
-
-    $(".ap_list_selector_icon p").bind("click", function(){
-        var parentNode = $(this).parent();
-        var color = parentNode.attr("class").substr(22);
-        console.log(color);
-
-        $("#ap_list .table_record").css("display", "none");
-        $("#ap_list .table_record").filter(function(index){
-            var classname = $(this).children().eq(0).attr("class");
-            console.log(classname + " " + color );
-            console.log(classname.indexOf(color));
-            return classname.indexOf(color) > 0;
-        }).css("display", "block");
-        //console.log(arr.length);
-    });
-
-	});
-</script>
-
 </body>
 </html>
