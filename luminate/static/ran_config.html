@@ -96,8 +96,9 @@
             </div>
         </div>
     </div>
+    <!-- Top navigater -->
     <div id="main_tab">
-        <div class="tab_item selected" id="tab_map">
+        <div class="tab_item" id="tab_map">
             <p class="tab_item_text">MAP</p>
         </div>
         <div class="tab_item" id="tab_ap_list">
@@ -106,7 +107,7 @@
         <div class="tab_item" id="tab_alarm_list">
             <p class="tab_item_text">ALARMS</p>
         </div>
-        <div class="tab_item" id="tab_config_list">
+        <div class="tab_item selected" id="tab_config_list">
             <p class="tab_item_text">CONFIG</p>
         </div>
         <div class="dropdown" style="float:right;">
@@ -119,13 +120,108 @@
                 <li><a href="#">CUSTOMIZE</a></li>
             </ul>
         </div>
-
     </div>
-    <div class="main_section" id="map" style="display:block;position:relative;">
-        <div id="blank_map_v2" style="z-index:1099;margin:50px;">
-            <img src="./images/img-map-us-grey.png">
+    <br/>
+    <div id="config_tab">
+        <div class="tab_item_sub selected" id="config_sites">
+            <p class="tab_item_text_sub">SITES</p>
         </div>
-        <div id="hot_zone_ca" style="position:absolute;left:60px;top:270px;width:100px;height:100px;"></div>
+        <div class="tab_item_sub" id="config_aps">
+            <p class="tab_item_text_sub">APS</p>
+        </div>
+        <div class="tab_item_sub" id="config_sonprofiles">
+            <p class="tab_item_text_sub">SON PROFILES</p>
+        </div>
+        <div class="tab_item_sub" id="config_approfiles">
+            <p class="tab_item_text_sub">AP PROFILES</p>
+        </div>
+    </div>
+
+    <div class="main_section" id="config_sites_list" style="display:none;">
+        <div id="table_header">
+            <div class="table_header_title" style="width:380px;">
+                <span class="table_header_column">SITE</span>
+            </div>
+            <div class="table_header_title" style="width:110px;">
+                <span class="table_header_column">LOCATION</span>
+            </div>
+            <div class="table_header_title" style="width:140px;">
+                <span class="table_header_column">SON PROFILE</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column">AP PROFILE</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column"># OF APS</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column">LAST UPDATE</span>
+            </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+        </div>
+    </div>
+
+    <div class="main_section" id="config_aps_list" style="display:none;">
+        <div id="table_header">
+            <div class="table_header_title" style="width:380px;">
+                <span class="table_header_column">AP</span>
+            </div>
+            <div class="table_header_title" style="width:110px;">
+                <span class="table_header_column">SITE</span>
+            </div>
+            <div class="table_header_title" style="width:140px;">
+                <span class="table_header_column">LOCATION</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column">AP PROFILE</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column">LAST UPDATE</span>
+            </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+        </div>
+    </div>
+
+    <div class="main_section" id="config_sonprofiles_list" style="display:none;">
+        <div id="table_header">
+            <div class="table_header_title" style="width:380px;">
+                <span class="table_header_column">PROFILE</span>
+            </div>
+            <div class="table_header_title" style="width:110px;">
+                <span class="table_header_column">APS</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column">LAST UPDATE</span>
+            </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+        </div>
+    </div>
+
+    <div class="main_section" id="config_approfiles_list" style="display:none;">
+        <div id="table_header">
+            <div class="table_header_title" style="width:380px;">
+                <span class="table_header_column">PROFILE</span>
+            </div>
+            <div class="table_header_title" style="width:110px;">
+                <span class="table_header_column">APS</span>
+            </div>
+            <div class="table_header_title" style="width:120px;">
+                <span class="table_header_column">LAST UPDATE</span>
+            </div>
+        </div>
+        <div id="horizontal_line">
+        </div>
+        <div class="table_content_list">
+        </div>
     </div>
 
 
@@ -305,6 +401,22 @@
 
             //set the select status
             $(".tab_item").removeClass("selected");
+            parentNode.addClass("selected");
+
+            console.log("span clicked" + tab_item_id);
+            $(".main_section").css("display", "none");
+            $("#"+tab_item_id).css("display", "block");
+
+            //now load the data
+            loadAndRender(tab_item_id);
+        });
+
+        $(".tab_item_sub p").bind("click", function(){
+            var parentNode = $(this).parent();
+            var tab_item_id = parentNode.attr("id").substr(4);
+
+            //set the select status
+            $(".tab_item_sub").removeClass("selected");
             parentNode.addClass("selected");
 
             console.log("span clicked" + tab_item_id);

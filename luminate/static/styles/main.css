@@ -156,7 +156,7 @@ span {
 	height: 50px;
 	clear: both;
 }
-
+/*first layer*/
 .tab_item{
 	float: left;
 	height: 50px;
@@ -185,6 +185,43 @@ span {
 	 text-decoration: underline;
 	 cursor: hand;
 	 cursor: pointer;
+}
+
+/*second layer*/
+.tab_item_sub{
+	float: left;
+	height: 50px;
+	width: 120px;
+	color: #666666;
+	background-color: #333333;
+	opacity: 1;
+}
+
+.tab_item_sub.selected{
+	color: rgb(244, 244, 244);
+	/*background-image: url("../images/tab_item_selected.png");*/
+	background-color: #666666;
+}
+
+.tab_item_sub:hover{
+	color: rgb(244, 244, 244);
+	background-color: deepskyblue;
+}
+
+.tab_item_text_sub{
+	padding-top:15px;
+	margin: 0px auto;
+	font-family: 'Open Sans Regular', 'Open Sans';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	text-align: center;
+	line-height: normal;
+}
+
+.tab_item_text_sub:hover {
+	cursor: hand;
+	cursor: pointer;
 }
 
 .main_section {
