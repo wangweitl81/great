@@ -33,9 +33,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@RequestMapping("")
-	public @ResponseBody String index() {
-		return "This is the admin section.";
-	}
+  @RequestMapping("")
+  public @ResponseBody String index() {
+    return "This is the admin section.";
+  }
 
 }

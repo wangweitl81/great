@@ -1,51 +1,37 @@
-angular.module('myapp', ["ui.router"])
-.config(function($stateProvider, $urlRouterProvider){
-      
+/*global angular */
+
+/**
+ * The main app module
+ *
+ * @type {angular.Module}
+ */
+angular.module('console', ["ui.router"])
+.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+		//$locationProvider.baseHref = "/hello/";
+	// $httpProvider.interceptors.push('PathInterceptor');
       // For any unmatched url, send to /populations
-      $urlRouterProvider.otherwise('/populations')
+      $urlRouterProvider.otherwise('/ran/ran_map');
       
       $stateProvider
-        .state('admin', {
-          url: '/admin',
-          templateUrl: 'admin.html'
+        .state('ran', {
+        	url: '/ran',
+            templateUrl: "/console/ran/ran.htm"
         })
-        .state('populations', {
-            url: "/populations",
-            templateUrl: "populations/populations.html"
+        .state('ran.map', {
+        	url: '/ran_map',
+            templateUrl: "/console/ran/ran.map.html",
+            controller: 'RanMapCtrl'
         })
-        .state('populations.visits', {
-            url: "/visits",
-            templateUrl: "populations/populations.visits.html",
-            controller: 'VisitCtrl'
+        .state('ran.aplist', {
+        	url: '/ran_aplist',
+            templateUrl: "/console/ran/ran.aplist.htm",
+            controller: 'RanAPCtrl'
         })
-        .state('populations.subjects', {
-            url: "/subjects",
-            templateUrl: "populations/populations.subjects.html",
-            controller: 'SubjectCtrl'
-        })
-        .state('personnel', {
-            url: "/personnel",
-            templateUrl: "personnel/personnel.html"
-        })
-        .state('personnel.list', {
-          url: '/list',
-          templateUrl: 'personnel/personnel.list.html',
-          controller: 'PersonnelCtrl'
-        })
-        .state('personnel.list.person', {
-          url: '/:id',
-          templateUrl: 'personnel/personnel.list.person.html',
-          controller: function($scope, $stateParams){
-            $scope.id = $stateParams.id
-          }
+        .state('ran.alarmlist', {
+        	url: '/ran_alarmlist',
+            templateUrl: "/console/ran/ran.alarmlist.htm",
+            controller: 'RanAlarmCtrl'
         });
-    })
-    .controller('PersonnelCtrl', ['$scope', function($scope){
-      $scope.personnel = [{id:'1', name:"David"}, {id:'2', name:"Jon"}, {id:'3', name:"Tim"}, {id:'4', name:"Don"}];
-    }])
-    .controller('SubjectCtrl', ['$scope', function($scope){
-      $scope.subjects = ['100101', '100201', '100301'];
-    }])
-    .controller('VisitCtrl', ['$scope', function($scope){
-      $scope.visits = ["Enr", "Xab", "Conv"];
-    }]);
+      
+     // $locationProvider.html5Mode(true);
+    });
