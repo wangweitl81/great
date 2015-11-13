@@ -137,9 +137,9 @@
         </div>
     </div>
 
-    <div class="main_section" id="config_sites_list" style="display:none;">
+    <div class="main_section" id="config_sites_list" style="display:block;">
         <div id="table_header">
-            <div class="table_header_title" style="width:380px;">
+            <div class="table_header_title" style="width:280px;">
                 <span class="table_header_column">SITE</span>
             </div>
             <div class="table_header_title" style="width:110px;">
@@ -166,7 +166,7 @@
 
     <div class="main_section" id="config_aps_list" style="display:none;">
         <div id="table_header">
-            <div class="table_header_title" style="width:380px;">
+            <div class="table_header_title" style="width:300px;">
                 <span class="table_header_column">AP</span>
             </div>
             <div class="table_header_title" style="width:110px;">
@@ -190,13 +190,13 @@
 
     <div class="main_section" id="config_sonprofiles_list" style="display:none;">
         <div id="table_header">
-            <div class="table_header_title" style="width:380px;">
+            <div class="table_header_title" style="width:300px;">
                 <span class="table_header_column">PROFILE</span>
             </div>
-            <div class="table_header_title" style="width:110px;">
+            <div class="table_header_title" style="width:150px;">
                 <span class="table_header_column">APS</span>
             </div>
-            <div class="table_header_title" style="width:120px;">
+            <div class="table_header_title" style="width:150px;">
                 <span class="table_header_column">LAST UPDATE</span>
             </div>
         </div>
@@ -208,13 +208,13 @@
 
     <div class="main_section" id="config_approfiles_list" style="display:none;">
         <div id="table_header">
-            <div class="table_header_title" style="width:380px;">
+            <div class="table_header_title" style="width:300px;">
                 <span class="table_header_column">PROFILE</span>
             </div>
-            <div class="table_header_title" style="width:110px;">
+            <div class="table_header_title" style="width:150px;">
                 <span class="table_header_column">APS</span>
             </div>
-            <div class="table_header_title" style="width:120px;">
+            <div class="table_header_title" style="width:150px;">
                 <span class="table_header_column">LAST UPDATE</span>
             </div>
         </div>
@@ -245,7 +245,7 @@
                 html += getAPRecord(element);
             });
             $("#ap_list .table_content_list").eq(0).html(html);
-        } else {
+        } else if(serviceName == 'alarm_list'){
             var html = "";
             $.each(data, function(index, element) {
                 html += getAlarmRecord(element);
@@ -413,8 +413,8 @@
 
         $(".tab_item_sub p").bind("click", function(){
             var parentNode = $(this).parent();
-            var tab_item_id = parentNode.attr("id").substr(4);
-
+            var tab_item_id = parentNode.attr("id");
+            tab_item_id += '_list';
             //set the select status
             $(".tab_item_sub").removeClass("selected");
             parentNode.addClass("selected");
@@ -424,7 +424,7 @@
             $("#"+tab_item_id).css("display", "block");
 
             //now load the data
-            loadAndRender(tab_item_id);
+            //loadAndRender(tab_item_id);
         });
 
         $(".ap_list_selector_icon p").bind("click", function(){
