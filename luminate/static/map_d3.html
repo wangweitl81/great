@@ -55,6 +55,10 @@
         padding: 5px 10px;
         background-color: #ffffff;
     }
+    #tip_alarms *{
+        vertical-align:middle; /* 居中对齐， */
+        font-size:14px;
+    }
 </style>
 <body>
 <script src='http://code.jquery.com/jquery-2.0.3.js'></script>
@@ -65,10 +69,13 @@
     <label class="triRight"></label>
     <label class="triRightInner"></label>
     <span id="bubble_tooltip_content">
-        <h1>fwefwe</h1>
-        <p>fjioewfwe</p>
-        <p>fwefwefwefwef</p>
-        <p>fwefewfew</p>
+        <h3 id="tip_title">BAY AREA</h3>
+        <div id="tip_circle"></div>
+        <p>ALARMS</p>
+        <div id="tip_alarms">
+            <img src="/static/images/status_grey.png" alt=""/>
+            6
+        </div>
     </span>
 </div>
 
@@ -111,23 +118,10 @@
 //            //.call(zoom) // delete this line to disable free zooming
 //            .call(zoom.event);
 
-    var citiesData = [{"city": "Chicago", location: {"lat": 41.87811, "long": -87.62980}},
-        {"city": "New Orleans", location: {"lat": 29.95107 , "long": -90.07153}},
-        {"city": "Seattle", location: {"lat": 47.60621, "long": -122.33207}},
-        {"city": "Boston", location: {"lat":  42.35849, "long": -71.06010}}];
-
-    var Box;
-    remove = function()
-    {
-        if(Box instanceof MessageBox) Box.Remove(); // Remove MessageBox
-    };
-
-    show = function()
-    {
-        var test = document.getElementById("test");
-        Box = new MessageBox(test, 1, "Test Message..", 50, 10, 5000, true);
-        Box.Show(); // show the MessageBox
-    };
+    var citiesData = [{"city": "Chicago", location: {"lat": 41.87811, "long": -87.62980},data:{"red":15,"green":15,"yellow":15,"grey":15}},
+        {"city": "New Orleans", location: {"lat": 29.95107 , "long": -90.07153},data:{"red":15,"green":15,"yellow":15,"grey":15}},
+        {"city": "Seattle", location: {"lat": 47.60621, "long": -122.33207},data:{"red":15,"green":15,"yellow":15,"grey":15}},
+        {"city": "Boston", location: {"lat":  42.35849, "long": -71.06010},data:{"red":15,"green":15,"yellow":15,"grey":15}}];
 
     svg.append("g")
             .attr("class", "cities")
@@ -149,7 +143,7 @@
                         .style("fill","yellow");
                 var pos = projection([d.location.long,d.location.lat]);
 
-                showToolTip(event,pos,'This is the content of the tooltip.');
+                showToolTip(event,pos, d.data);
             })
             .on("mouseout",function(d){
                 d3.select(this)
@@ -248,12 +242,12 @@
         if (d3.event.defaultPrevented) d3.event.stopPropagation();
     }
 
-    function showToolTip(e,pos,text)
+    function showToolTip(e,pos,data)
     {
         if(document.all)
             e = d3.event;
         var obj = document.getElementById('bubble_tooltip');
-        var obj2 = document.getElementById('bubble_tooltip_content');
+        //var obj2 = document.getElementById('bubble_tooltip_content');
         //obj2.innerHTML = text;
         var st = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
         if(navigator.userAgent.toLowerCase().indexOf('safari')>=0)st=0;
@@ -262,7 +256,74 @@
         obj.style.left = pos[0]+80 + 'px';
         obj.style.top = pos[1] -40 + st + 'px';
         obj.style.display = 'block';
+
+        drawCircle([{"x":50,"y":50}],data);
         //fadeIn(obj,5,100);
+    }
+
+
+    function drawCircle(startPos,data)
+    {
+        var svg = d3.select("#tip_circle")
+                .append("svg")
+                .attr("width", 400)
+                .attr("height", 100);
+        svg.append("g")
+                .selectAll("circle")
+                .data(startPos)
+                .enter().append("circle")
+                .attr("transform", function(d) {
+                    return "translate(" + d.x + ","+ d.y  + ")"
+                })
+                .attr("fill", "white")
+                .attr("stroke", "green")       //给各圆边涂成橘黄
+                .attr("stroke-width", 10)
+                .attr("r", 30);
+
+        svg.append("g")
+                .selectAll("circle")
+                .data(startPos)
+                .enter().append("circle")
+                .attr("transform", function(d) {
+                    posX = d.x+80;
+                    return "translate(" + posX + ","+ d.y  + ")"
+                })
+                .attr("fill", "white")
+                .attr("stroke", "yellow")
+                .attr("stroke-width", 10)
+                .attr("r", 30);
+
+        svg.append("g")
+                .selectAll("circle")
+                .data(startPos)
+                .enter().append("circle")
+                .attr("transform", function(d) {
+                    posX = d.x + 160;
+                    return "translate(" + posX + ","+ d.y  + ")"
+                })
+                .attr("fill", "white")
+                .attr("stroke", "red")
+                .attr("stroke-width", 10)
+                .attr("r", 30);
+
+        svg.append("g")
+                .selectAll("circle")
+                .data(startPos)
+                .enter().append("circle")
+                .attr("transform", function(d) {
+                    posX = d.x + 240;
+
+                    return "translate(" + posX + ","+ d.y  + ")"
+                })
+                .attr("fill", "white")
+                .attr("stroke", "grey")       //给各圆边涂成橘黄
+                .attr("stroke-width", 10)
+                .attr("r", 30);
+    }
+
+    function deleteCicle()
+    {
+        document.getElementById('tip_circle').innerHTML="";
     }
 
     function hideToolTip()
@@ -270,6 +331,7 @@
         var obj = document.getElementById('bubble_tooltip');
         obj.style.display = 'none';
         //fadeOut(obj,5,0);
+        deleteCicle();
     }
 
 </script>
