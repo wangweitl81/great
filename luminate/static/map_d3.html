@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+    .background {
+        fill: none;
+        pointer-events: all;
+    }
+
+    .feature {
+        fill: #ccc;
+        cursor: pointer;
+    }
+
+    .feature.active {
+        fill: orange;
+    }
+
+    .mesh {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .triRight{
+        z-index: 2;
+        border: 10px solid #AAAAAA;
+        border-color: transparent #AAAAAA transparent transparent;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left:-20px;
+        top: 40px;
+    }
+    .triRightInner{
+        z-index: 3;
+        border: 8px solid #ffffff;
+        border-color: transparent #ffffff transparent transparent;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left:-16px; top:42px;
+    }
+    .bubble_tooltip_common{
+        z-index: 1;
+        color:#333333;
+        width:400px;
+        position:absolute;
+        display:none;
+        border: 1px solid #AAAAAA;
+        box-shadow: 0px 0px 10px #AAAAAA;
+        border-radius: 0px;
+        padding: 5px 10px;
+        background-color: #ffffff;
+    }
+</style>
+<body>
+<script src='http://code.jquery.com/jquery-2.0.3.js'></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+
+<div class="bubble_tooltip_common" id="bubble_tooltip">
+    <label class="triRight"></label>
+    <label class="triRightInner"></label>
+    <span id="bubble_tooltip_content">
+        <h1>fwefwe</h1>
+        <p>fjioewfwe</p>
+        <p>fwefwefwefwef</p>
+        <p>fwefewfew</p>
+    </span>
+</div>
+
+</body>
+<script>
+
+    var width = $(window).width(),
+            height = $(window).height();
+
+    var sc = Math.max(width,height);
+    var active = d3.select(null);
+
+    var projection = d3.geo.albersUsa()
+            .scale(sc)
+            .translate([width / 2, height / 2]);
+
+//    var zoom = d3.behavior.zoom()
+//            .translate([0, 0])
+//            .scale(1)
+//            .scaleExtent([1, 8])
+//            .on("zoom", zoomed);
+
+    var path = d3.geo.path()
+            .projection(projection);
+
+    var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+            //.on("click", stopped, true);
+
+    svg.append("rect")
+            .attr("class", "background")
+            .attr("width", width)
+            .attr("height", height);
+            //.on("click", reset);
+
+    var g = svg.append("g");
+
+//    svg
+//            //.call(zoom) // delete this line to disable free zooming
+//            .call(zoom.event);
+
+    var citiesData = [{"city": "Chicago", location: {"lat": 41.87811, "long": -87.62980}},
+        {"city": "New Orleans", location: {"lat": 29.95107 , "long": -90.07153}},
+        {"city": "Seattle", location: {"lat": 47.60621, "long": -122.33207}},
+        {"city": "Boston", location: {"lat":  42.35849, "long": -71.06010}}];
+
+    var Box;
+    remove = function()
+    {
+        if(Box instanceof MessageBox) Box.Remove(); // Remove MessageBox
+    };
+
+    show = function()
+    {
+        var test = document.getElementById("test");
+        Box = new MessageBox(test, 1, "Test Message..", 50, 10, 5000, true);
+        Box.Show(); // show the MessageBox
+    };
+
+    svg.append("g")
+            .attr("class", "cities")
+            .selectAll("circle")
+            .data(citiesData)
+            .enter().append("circle")
+            .attr("transform", function(d) {
+                return "translate(" + projection([
+                            d.location.long,
+                            d.location.lat
+                        ]) + ")"
+            })
+            .attr("fill", "green")
+            .attr("stroke", "orange")       //给各圆边涂成橘黄
+            .attr("stroke-width", 5)
+            .attr("r", 50)
+            .on("mouseover",function(d){
+                d3.select(this)
+                        .style("fill","yellow");
+                var pos = projection([d.location.long,d.location.lat]);
+
+                showToolTip(event,pos,'This is the content of the tooltip.');
+            })
+            .on("mouseout",function(d){
+                d3.select(this)
+                        .style("fill","green");
+                hideToolTip();
+            });
+
+    var outerRadius = 100 / 2;
+    var innerRadius = 100 / 2.5;
+    var arc = d3.svg.arc()
+            .innerRadius(innerRadius)
+            .outerRadius(outerRadius);
+
+    var pie = d3.layout.pie();
+    var color = d3.scale.ordinal().range(['green', 'yellow', 'red', 'grey']);
+
+
+    d3.json("/static/us.json", function(error, us) {
+        if (error) throw error;
+
+        g.selectAll("path")
+                .data(topojson.feature(us, us.objects.states).features)
+                .enter().append("path")
+                .attr("d", path)
+                .attr("class", "feature");
+                //.on("click", clicked);
+
+        g.append("path")
+                .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
+                .attr("class", "mesh")
+                .attr("d", path);
+
+        var arcs = svg.selectAll("g.arc")
+                .data(citiesData)
+                //.enter().append("g");
+                //.data(pie(dataset))
+                .enter()
+                .append("g")
+                .attr("class", "arc")
+                .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
+
+//        arcs.append("path")
+//                .attr("fill", function(d, i) {
+//                    return color(i);
+//                })
+//                .attr("d", arc)
+//                .on("mouseover",function(d){
+//                    d3.select(this)
+//                            .style("fill","yellow");
+//                })
+//                .on("mouseout",function(d){
+//                    d3.select(this)
+//                            .transition()
+//                            .duration(200)
+//                            .style("fill", function(d) {
+//                                return color((d.children ? d : d.parent).name);
+//                            });
+//                });
+    });
+
+//    function clicked(d) {
+//        if (active.node() === this) return reset();
+//        active.classed("active", false);
+//        active = d3.select(this).classed("active", true);
+//
+//        var bounds = path.bounds(d),
+//                dx = bounds[1][0] - bounds[0][0],
+//                dy = bounds[1][1] - bounds[0][1],
+//                x = (bounds[0][0] + bounds[1][0]) / 2,
+//                y = (bounds[0][1] + bounds[1][1]) / 2,
+//                scale = .9 / Math.max(dx / width, dy / height),
+//                translate = [width / 2 - scale * x, height / 2 - scale * y];
+//
+//        svg.transition()
+//                .duration(750)
+//                .call(zoom.translate(translate).scale(scale).event);
+//    }
+//
+//    function reset() {
+//        active.classed("active", false);
+//        active = d3.select(null);
+//
+//        svg.transition()
+//                .duration(750)
+//                .call(zoom.translate([0, 0]).scale(1).event);
+//    }
+
+    function zoomed() {
+        g.style("stroke-width", 1.5 / d3.event.scale + "px");
+        g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    }
+
+    // If the drag behavior prevents the default click,
+    // also stop propagation so we don’t click-to-zoom.
+    function stopped() {
+        if (d3.event.defaultPrevented) d3.event.stopPropagation();
+    }
+
+    function showToolTip(e,pos,text)
+    {
+        if(document.all)
+            e = d3.event;
+        var obj = document.getElementById('bubble_tooltip');
+        var obj2 = document.getElementById('bubble_tooltip_content');
+        //obj2.innerHTML = text;
+        var st = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
+        if(navigator.userAgent.toLowerCase().indexOf('safari')>=0)st=0;
+        var leftPos = e.clientX + 20; //clientX 事件属性返回当事件被触发时鼠标指针相对于浏览器页面（或客户区）的水平坐标
+        if(leftPos<0)leftPos = 0;
+        obj.style.left = pos[0]+80 + 'px';
+        obj.style.top = pos[1] -40 + st + 'px';
+        obj.style.display = 'block';
+        //fadeIn(obj,5,100);
+    }
+
+    function hideToolTip()
+    {
+        var obj = document.getElementById('bubble_tooltip');
+        obj.style.display = 'none';
+        //fadeOut(obj,5,0);
+    }
+
+</script>

@@ -11,32 +11,45 @@
             //map.setCenter(new GLatLng(33.0, 106.0), 3);
             var map;
             var chicago=new google.maps.LatLng(31.2014966, 121.40233369999998);
+            var ccc = new google.maps.LatLng(20.2,121.0);
+            var ddd = new google.maps.LatLng(25.0,120.1);
             var contentString='<div id="content"><img class="img" src="http://www.phpernote.com/images/logo.gif" />哥曾经住过这里！<a target="_blank" href="http://www.phpernote.com/">点击访问我的网站</a>！<br />这块内容是自定义的，只要你设计的足够好看，这里一样可以做的非常好看！</div>';
             var myOptions={
                 zoom:14,
                 mapTypeControl:false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                center: chicago
+                center: ddd
             }
             map=new google.maps.Map(document.getElementById("map_container"), myOptions);
             //将标记显示在地图中
-            var marker = new google.maps.Marker({
-                position: chicago,
-                title:"My place maker"
-            });
-            marker.setMap(map);
+
+            map.bound
+
+
+            var posArr = new Array(chicago,ccc,ddd);
             var infowindow=new google.maps.InfoWindow({
                 content: contentString,
                 //pixelOffset:({width:-100, height:200}),
                 position:chicago
             });
+            var markArr = new Array(posArr.length);
+            for(var i=0;i<posArr.length;i++){
+                    markArr[i] = new google.maps.Marker({
+                    position: posArr[i],
+                    title:"My place maker"
+                });
+                markArr[i].setMap(map);
+                google.maps.event.addListener(markArr[i], 'mouseover', function( event) {
+                    infowindow.position = posArr[i];
+                    infowindow.open(map);
+                });
+                google.maps.event.addListener(markArr[i], 'mouseout', function( event) {
+                    infowindow.close(map);
+                });
+            }
+
             //click
-            google.maps.event.addListener(marker, 'mouseover', function( event) {
-                infowindow.open(map);
-            });
-            google.maps.event.addListener(marker, 'mouseout', function( event) {
-                infowindow.close(map);
-            });
+
 
 
         }
