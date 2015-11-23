@@ -11,6 +11,9 @@ lwms.Util.openwin = function(id,path,dist){
 		console.log("dialog visibility: 1 " + objid.style.display);
 		$("#winmask").height(document.body.scrollHeight+"px"); //设遮罩层高度
 		$("#winmask").width(document.body.scrollWidth+"px"); //设遮罩层宽度		
+		console.log(document.body.scrollHeight);
+		console.log(document.body.scrollWidth);
+
 		$("#winmask").css('z-index',(parseInt($("#"+id).css('z-index'))-1));//遮罩层在弹出窗口的下一层
 		(objid.style.display=="none")?$("#winmask").hide():$("#winmask").show();
 		
