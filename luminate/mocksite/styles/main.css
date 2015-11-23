@@ -14,6 +14,11 @@ body {
     text-align: left;
 }
 
+a {
+	color: #fff;
+	#text-decoration:none;
+}
+
 p {
 	margin: 0px auto;
 }
@@ -24,12 +29,13 @@ p {
     top: 0px;
     width: 225px;
     float:left;
+    z-index: -1;
 }
 
 .main {
 	float:left;
 	width: 980px;
-	margin-left: 155px;
+	margin-left: 5px;
 }
 
 .dynamic_panel {
@@ -107,6 +113,7 @@ span {
 	height: 80px;
 	padding-left: 3px;
 	padding-top: 20px;
+	margin-left:150px;
 }
 
 .banner_text {
@@ -155,8 +162,9 @@ span {
 	width: 980px;
 	height: 50px;
 	clear: both;
+	padding-left: 150px;
 }
-/*first layer*/
+
 .tab_item{
 	float: left;
 	height: 50px;
@@ -187,49 +195,13 @@ span {
 	 cursor: pointer;
 }
 
-/*second layer*/
-.tab_item_sub{
-	float: left;
-	height: 50px;
-	width: 120px;
-	color: #666666;
-	background-color: #333333;
-	opacity: 1;
-}
-
-.tab_item_sub.selected{
-	color: rgb(244, 244, 244);
-	/*background-image: url("../images/tab_item_selected.png");*/
-	background-color: #666666;
-}
-
-.tab_item_sub:hover{
-	color: rgb(244, 244, 244);
-	background-color: deepskyblue;
-}
-
-.tab_item_text_sub{
-	padding-top:15px;
-	margin: 0px auto;
-	font-family: 'Open Sans Regular', 'Open Sans';
-	font-weight: 400;
-	font-style: normal;
-	font-size: 13px;
-	text-align: center;
-	line-height: normal;
-}
-
-.tab_item_text_sub:hover {
-	cursor: hand;
-	cursor: pointer;
-}
-
 .main_section {
 	float: left;
 	width: 980px;
 	height: 665px;
 	padding-left: 3px;
 	margin-top: 30px;
+	margin-left: 150px;
 }
 
 .table_header_column {
@@ -375,7 +347,334 @@ p.padding {
 	background-position: 100px 100px;
 }
 
+.ccircle{
+	opacity: 0.8;
+}
+
+.inner-circle {
+	font-family: "sans-serif";
+	font-size: "20px";
+}
+
+.metrics_bar {
+	height:140px;
+	width:1140px;
+	margin-left:80px;
+	margin-top: 30px;
+}
+
 .ring {
 	fill: green;
     opacity: 0.5;
 }
+
+.wrapper {
+	width:940px;
+	height:140px;
+	position:relative;
+	float:left;
+	overflow:hidden;
+}
+
+.slider {
+	height:100%;
+	position:absolute;
+}
+
+.metrics_nav{
+	float:left;
+	height:140px;
+	width:90px;
+	background-image:  url("../images/transparent.gif");
+}
+
+.metrics_nav_content {
+	margin-top: 45px;
+	margin-left: 40px;
+	height: 20px;
+	width: 20px;	
+}
+
+.fa-angle-left {
+	color: green;
+}
+
+.fa-angle-right {
+	color: green;
+}
+
+.metrics_content_entry {
+	width: 180px;
+	height: 140px;
+	float:left;
+}
+
+.metrics_widget_circle {
+	width: 180px;
+	height: 110px;
+	padding-top: 10px;
+	padding-left: 40px;
+}
+
+.metrics_widget_note {
+	width: 180px;
+	height: 30px;
+	text-align: center;
+	font-size: 12px;	
+	color: white;
+	padding-top: 10px;
+	font-family: 'Open Sans Light', 'Open Sans';
+    font-weight: 200;
+    font-style: normal;	
+}
+
+.metrics_widget_text {
+	width: 180px;
+	height: 110px;
+	padding-top: 30px;
+	text-align:center;
+	font-family: 'Open Sans Light', 'Open Sans';
+	font-weight: 200;
+	font-style: normal;
+	font-size: 48px;
+	color: #CCCCCC;
+}
+
+.metrics_padding {
+	width:10px;
+	height:120px;
+	float:left;
+	padding-top:30px;
+}
+
+/*
+Here is for the login page 
+*/
+#login_title {
+	margin: 0px auto;
+	clear:both;
+	width: 380px;
+	height: 53px;
+	background-image: url("../images/logo_login.png");
+	background-size: 380px 53px;
+  background-repeat: no-repeat;
+  margin-bottom: 50px;
+}
+
+#login_main {
+  position: fixed;
+  top: 35%;
+  left: 35%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  height: 200px;
+  /*border: 1px red solid;*/
+}
+
+.input_bg {
+	clear: both;
+	width: 380px;
+	height: 40px;
+	background-image: url("../images/input_white_bg.png");
+	margin-bottom:10px;
+}
+
+.submit_bg {
+	clear:both;
+	width: 180px;
+	height: 40px;
+	background-image:  url("../images/submit_bg.png");
+	float: right;
+}
+
+.error_bg {
+	position: fixed;
+	top: 103px;
+	left: 380px;
+	width: 240px;
+	height: 90px;
+	background-image:  url("../images/error_login.png");
+}
+
+#info_dialog {
+	width: 580px;
+	height: 300px;
+	background-image:  url("../images/dialog_bg.png");
+	display: none;
+	position: absolute;
+	z-index: 100;
+}
+
+#chart_dialog {
+	width: 980px;
+	height: 500px;
+	background-image:  url("../images/metrics_bg.png");
+	display: none;
+	position: absolute;
+	z-index: 100;
+}
+
+.error_txt {
+	width: 158px;
+  height: 34px;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  color: #FFFFFF;
+  padding-top: 28px;
+  padding-left: 32px;
+  text-align: center;	
+}
+
+.input_login {
+  width: 270px;
+  height: 40px;
+  background-color: transparent;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  text-decoration: none;
+  color: #000000;
+  text-align: left;
+  border-color: transparent;
+  outline-style: none;
+}
+
+.input_link {
+	height: 40px;
+	float: right;
+  background-color: transparent;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  text-decoration: none;
+  color: #0000ff;
+  text-align: right;
+  border-color: transparent;
+  outline-style: none;
+  padding-top: 12px;
+}
+
+.submit_txt {
+  width: 180px;
+  height: 40px;
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  color: #CCCCCC;
+  padding-top: 12px;
+  text-align: center;	
+}
+
+.dialog_title {
+	padding-top: 50px;
+	/*padding-left: 30px;*/
+	height: 60px;
+	font-family: 'Open Sans Regular', 'Open Sans';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+  color: #333333;
+  margin: auto;
+  text-align:center;
+}
+
+.dialog_content {
+	padding-top: 10px;
+	padding-left: 60px;
+	padding-right: 60px;
+	height: 100px;
+	font-family: 'Open Sans Regular', 'Open Sans';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 14px;
+  color: #333333;
+  text-align: center;
+}
+
+#winmask {
+	width:100%;
+	z-index:999;
+	position:absolute;
+	background:#000;
+	top:0;
+	left:0;
+	opacity:0.6;
+	filter:alpha(opacity=60)
+} 
+
+a {
+	color:#1BA1E1;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+/*
+Here is for the chart dialog
+*/
+#date_tool {
+	margin: 0px auto;
+	padding-top: 5px;
+	height: 30px;
+	width: 780px;
+	font-size: 12px;
+}
+
+#chart_dialog_title {
+	padding-top: 50px;
+	padding-left: 100px;
+	/*padding-left: 30px;*/
+	height: 60px;
+	font-family: 'Open Sans Regular', 'Open Sans';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 18px;
+  color: #FFFFFF;
+  margin: auto;
+  text-align:left;
+}
+
+#chart_scale {
+	margin: 0px auto;
+	padding-top: 5px;
+	height: 30px;
+	width: 780px;
+	color: #666666;
+	font-family: 'Helvetica';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  text-align: left;
+}
+
+#chart_area {
+	margin: 0px auto;
+	width: 780px;
+	height: 240px;
+}
+
+.ui-widget { 
+	font-family: Lucida Grande, Lucida Sans, Arial, sans-serif; 
+	font-size: 0.8em;
+}
+
+#ui-datepicker-div { font-size: 12px; } 

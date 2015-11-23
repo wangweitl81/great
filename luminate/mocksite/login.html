@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <title>login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="./styles/font-awesome.css" type="text/css" rel="stylesheet">
+    <link href="./styles/main.css" type="text/css" rel="stylesheet">
+    <link href="./styles/jquery-ui.css" type="text/css" rel="stylesheet">
+    <link href="./styles/jquery-ui.theme.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />
+</head>
+<body>
+<div id="login_main">
+    <div>
+        <div id="login_title">
+        </div>
+        <div class="input_bg">
+            <input type="text" class="input_login" name="username" value="admin" />
+            <span id="info_link" class="input_link">
+            <a href="#">FORGOT</a>
+            </span>
+        </div>
+        <div class="input_bg">
+            <input type="password" class="input_login" name="password" value="" />
+            <span id="chart_link" class="input_link">
+            <a href="#">FORGOT</a>
+            </span>
+        </div>
+        <div>
+            <div class="submit_bg">
+              <span class="submit_txt">
+              LOG IN
+              </span>
+            </div>
+        </div>
+    </div>
+    <div class="error_bg">
+      <span class="error_txt">Please provide a valid email address and password</span>
+    </div>
+</div>
+<div class="dialog" id="info_dialog">
+  <div style="clear:both;">
+    <div style="float:right;"><i class="fa fa-times" id="close"></i></div>
+  </div>
+  <div class="dialog_title">
+    FORGOT USERNAME OR EMAIL ADDRESS
+  </div>
+  <div>
+    <span class="dialog_content">Please contact your administrator if you have forgotten your login username or email address.</span>
+  </div>  
+</div>
+<div id="chart_dialog">
+  <div style="clear:both;">
+    <div style="float:right;"><i class="fa fa-times" id="close_chart_dialog"></i></div>
+  </div>
+  <div id="chart_dialog_title">
+    CALL SETUP SUCESS
+  </div>
+  <div id="date_tool">
+    <p>From: <input type="text" id="date_from"> To:  <input type="text" id="date_to"> </p>
+  </div>
+  <div id="chart_scale">
+    <span>Graph Scale:   30 min   |   Hour   |   Day   |   Week   |   Month</span>
+  </div>
+  <div id="chart_area">
+    
+  </div>
+</div>
+
+<div id="winmask" style="display:none;"></div>
+</body>
+<script type="text/javascript" src="javascript/jquery.min.js"></script>
+<script type="text/javascript" src="javascript/jquery-ui.min.js"></script>
+<script type="text/javascript" src="javascript/general-utility.js"></script>
+<script type='text/javascript' src="http://www.google.com/jsapi?.js"></script>
+<script type="text/javascript">
+
+function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'X');
+    data.addColumn('number', 'Y');
+    var y = 50;
+    for (var i = 0; i < 1000; i++) {
+        y += Math.ceil(Math.random() * 3) * Math.pow(-1, Math.floor(Math.random() * 2));
+        data.addRow([i, y]);
+    }
+    
+    var chart = new google.visualization.LineChart(document.getElementById('chart_area'));
+    chart.draw(data, {
+        height: 260,
+        width: 780,
+        explorer: {
+            axis: 'horizontal',
+            keepInBounds: true
+        },
+        backgroundColor : '#333333',
+        hAxis: {
+          gridlines: { 
+          color : 'none'
+          }  
+        }, 
+    });   
+}
+
+$(document).ready(function(){
+  $("#info_link > a").click(function() {
+    lwms.Util.openwin("info_dialog");
+    });
+
+  $("#chart_link > a").click(function() {
+    lwms.Util.openwin("chart_dialog");
+  });
+
+  $("#close").click(function() {
+    lwms.Util.openwin("info_dialog");
+  });
+
+  $( "#date_from" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date"
+    });
+
+  $( "#date_to" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date"
+    });  
+
+google.load('visualization', '1', {packages:['corechart'], callback: drawChart});
+});
+
+</script>
+
+</html>
