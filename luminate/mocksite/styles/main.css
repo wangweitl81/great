@@ -76,12 +76,20 @@ span {
 	top:30px;
 	left:30px;
 	position:relative;
+	color: #fff;
+}
+
+.navigator_item:hover{
+	background-color: #1c8eda;
 }
 
 #icon_navigator {
-	float:left;
 	width: 80px; 
-	height: 320px;
+	height: 100%;
+	background-color:#131313;
+	position:fixed;
+	left:0px;
+	top:0px;
 }
 
 #text_navigator {
@@ -112,24 +120,25 @@ span {
 	width: 980px;
 	height: 80px;
 	padding-left: 3px;
-	padding-top: 20px;
 	margin-left:150px;
 }
 
 .banner_text {
-	padding-top: 10px;
 	clear: both;
 	font-family: 'Helvetica Light', 'Helvetica';
     font-weight: 200;
     font-style: normal;
     font-size: 18px;
     text-align: left;
+    width: 490px;
+    height: 80px;
+    float: left;
 }
 
 #search_bar {
 	float: right;
-    width: 580px;
-    height: 40px;
+    width: 480px;
+    height: 80px;
     font-family: 'FontAwesome';
     font-weight: 400;
     font-style: normal;
@@ -144,7 +153,7 @@ span {
 
 #key_search {
 	float: left;
-	width: 520px;
+	width: 400px;
     height: 40px;
     background-color: transparent;
     font-family: 'Open Sans';
@@ -678,3 +687,261 @@ Here is for the chart dialog
 }
 
 #ui-datepicker-div { font-size: 12px; } 
+
+/*
+*Here is for the network resource tree
+*/
+.tree_column {
+	width:200px;
+	height:100%;
+	float:left;
+	font-family: OpenSans-Light, 'Open Sans Light', 'Open Sans';
+	font-weight: 200;
+	font-style: normal;
+	font-size: 12px;
+	text-decoration: none;
+	color: rgb(204, 204, 204);	
+}
+
+.tree_icon {
+  color: rgb(204, 204, 204); 
+  float: left;
+  margin-left: 5px;
+}
+
+.tree_column_header {
+	width: 200px;
+	height: 50px;
+}
+
+.tree_horizon_line {
+	width:203px;
+	height: 3px;
+	background-image: url("../images/folder_horizon_separator.png")
+}
+
+.tree_column_node {
+	width: 200px;
+	height: 50px;
+  padding-top: 17px;
+  padding-left: 12px;
+}
+
+.tree_node_menu {
+  width: 50px;
+  padding-left: 17px;
+  height: 50px;
+  float:right;
+  display: none;
+}
+
+.tree_column_node:hover{
+  background-color: #1c8eda;
+}
+
+.tree_column_node.selected{
+  background-color: #666;
+}
+
+.tree_vertical_line {
+	width:3px;
+	height: 805px;
+	background-image: url("../images/folder_vertical_separator.png");
+  float:left;
+}
+
+.tree_column_header_filter {
+  padding-top: 17px;
+  padding-left: 0px;
+  width: 150px;
+  height: 50px;
+  float: left;
+}
+
+.tree_column_header_add {
+  padding-top: 17px;
+  padding-left: 15px;
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.tree_column_header_txt {
+  margin-right: 5px;
+  color: rgb(204, 204, 204); 
+  float: left;
+  margin-left: 10px;
+}
+
+#tree_node_cmenu {
+  width: 200px;
+  height: 80px;
+  background-color: #ddd;
+  display: none;
+}
+
+.node_menu_item {
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+  color: black;
+}
+
+.node_menu_item:hover {
+  background-color: #1c8eda;
+}
+
+.menu_item_text {
+  padding-left: 20px;
+  padding-top: 12px;
+  background: inherit;
+  font-family: 'OpenSans-Light', 'Open Sans Light', 'Open Sans';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 14px;
+  text-align: left;
+}
+
+#node_create_cmenu {
+  background-color: #ddd;
+  width: 200px;
+  height: 280px;
+  display: none;
+}
+
+.network_editor_area {
+  width: 280px;
+  height: 710px;
+  float: right;
+  background-color: #ccc;
+}
+
+.area_close_min {
+  float:right;
+  width:30px;
+  height:30px;
+  margin:0px auto;
+  text-align:center;
+  padding-top:5px;
+}
+
+.area_close_min:hover{
+  background-color: #850002;
+}
+
+.form_title {
+  clear: both;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  font-family: 'OpenSans-Light', 'Open Sans Light', 'Open Sans';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 20px;
+  text-decoration: none;
+  color: #333333;
+}
+
+.form_field_title{
+  clear: both;
+  margin-top: 20px;
+  margin-left: 20px;
+  font-family: 'OpenSans-Light', 'Open Sans Light', 'Open Sans';
+  font-weight: 200;
+  font-style: normal;
+  font-size: 12px;
+  text-decoration: none;
+  color: #333333;
+}
+
+.form_field_input {
+  margin-top: 10px;
+  margin-left: 16px;
+  width: 240px;
+  height: 30px;
+  font-family: 'FontAwesome', 'FontAwesome';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  text-align: right;  
+}
+
+.form_field_input_control {
+  width: 236px;
+  height: 30px;
+  background-color: transparent;
+  font-family: 'OpenSans', 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  font-size: 12px;
+  text-decoration: none;
+  color: #000000;
+  background-color: white;
+  text-align: left;
+  border-color: transparent;
+  outline-style: none;
+  float: left;
+}
+
+.form_field_input_control.short {
+  width: 210px;
+}
+
+.form_field_input_dropdown {
+  float: left;
+  height: 30px;
+  width: 26px;
+  padding-top: 5px;
+  padding-left: 0px;
+  background-color: transparent;
+  background-color: white;
+  color: black;
+  font-size: 10px;
+  text-align: center;
+}
+
+.form_field_select {
+  width: 100px;
+  height: 30px;
+  font-size: 12px;
+  text-align: left;
+  float: left;
+}
+
+.form_action {
+  position: absolute;
+  bottom: 10px;
+  left: 17px;
+}
+
+.form_action_cancel {
+  float: left;
+  width: 80px;
+  height: 40px;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-top: 11px;
+  background: inherit;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(51, 51, 51, 1);
+  color: black;
+  font-family: 'OpenSans', 'Open Sans';
+}
+
+.form_action_save {
+  margin-left: 10px;
+  float: left;
+  padding-left: 26px;
+  padding-top: 11px;
+  width: 150px;
+  height: 40px;
+  background: inherit;
+  background-color: rgba(51, 51, 51, 1);
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(51, 51, 51, 1);
+  font-size: 12px;
+  color: #FFFFFF;
+  font-family: 'OpenSans', 'Open Sans';
+}

@@ -1,0 +1,15 @@
+var lwms = lwms || {};
+
+/**
+* DynamicForm is a class used by client javascript code to generate a html form
+* based on some meta data
+* @param formId {string} - id of the form to be generated
+* @param containerId {string} - the div wrapper of this form
+*/
+lwms.DynamicForm = function(formId, containerId) {
+  this.formId = formId;
+  this.containerId = containerId;
+  
+}
+
+lwms.DynamicForm.
